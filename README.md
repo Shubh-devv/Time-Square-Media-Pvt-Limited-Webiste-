@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Time Square Media — Website
 
 A modern OOH + Digital Marketing agency site for **Time Square Media Pvt. Ltd.**, built with
@@ -49,3 +50,7 @@ lib/data.ts         All content (services, cities, work, clients, offices)
 - Animations respect `prefers-reduced-motion`.
 - Fully responsive down to mobile; keyboard-focusable navigation.
 - No project images are bundled — all visuals are CSS so the site runs offline out of the box.
+=======
+# Time-Square-Media-Pvt-Limited-Webiste-
+That's My Worked Company Website , used languages React.js, Type Script and Next Js
+>>>>>>> 29a9cee080a81c5c70e6c845852bbd6ded46cd2c
