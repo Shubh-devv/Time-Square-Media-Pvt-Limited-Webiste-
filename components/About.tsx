@@ -11,7 +11,7 @@ export default function About() {
         <div className="md:col-span-5">
           <Reveal>
             <p className="eyebrow mb-6">Who we are</p>
-            <h2 className="display text-[clamp(2.4rem,6vw,4.5rem)]">
+            <h2 className="display text-[clamp(2.4rem,6vw,4.5rem)] transition-colors duration-500 hover:text-blue/80">
               One agency.<br />
               <span className="text-blue">Every</span> medium.<br />
               Every city.

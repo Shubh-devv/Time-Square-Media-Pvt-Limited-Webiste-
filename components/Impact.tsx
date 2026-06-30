@@ -12,7 +12,7 @@ export default function Impact() {
           <div className="md:col-span-7">
             <Reveal>
               <p className="eyebrow mb-6">Why out-of-home works</p>
-              <h2 className="display text-ink text-[clamp(2.4rem,7vw,5.5rem)]">
+              <h2 className="display text-ink text-[clamp(2.4rem,7vw,5.5rem)] transition-colors duration-500 hover:text-blue">
                 Attention you<br />can&apos;t scroll past.
               </h2>
             </Reveal>
