@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --font-anton: "Anton";
+  --font-grotesk: "Space Grotesk";
+  --font-mono: "Space Mono";
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #090910;
+  color: #f0f0f8;
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #090910; }
+::-webkit-scrollbar-thumb { background: rgba(45, 120, 200, 0.4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(45, 120, 200, 0.7); }
+
+::selection {
+  background: #2D78C8;
+  color: #ffffff;
+}
+
+/* ---- Brand utilities -------------------------------------------- */
+
+.shell {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .shell {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* Eyebrow label */
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #2D78C8;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #ff3d5a;
+  box-shadow: 0 0 0 0 rgba(255, 61, 90, 0.6);
+  animation: pulse 2.4s ease-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 61, 90, 0.55); }
+  70%  { box-shadow: 0 0 0 10px rgba(255, 61, 90, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 61, 90, 0); }
+}
+
+/* Theatre bulb strip */
+.bulb-strip {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.bulb {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #FFB02E;
+  flex: 0 0 auto;
+  box-shadow: 0 0 8px rgba(255, 176, 46, 0.8);
+}
+
+.bulb:nth-child(3n)     { animation: bulbchase 1.2s ease-in-out infinite; }
+.bulb:nth-child(3n + 1) { animation: bulbchase 1.2s ease-in-out infinite 0.4s; }
+.bulb:nth-child(3n + 2) { animation: bulbchase 1.2s ease-in-out infinite 0.8s; }
+
+@keyframes bulbchase {
+  0%, 100% { opacity: 1; filter: brightness(1.5); }
+  50%       { opacity: 0.3; filter: brightness(0.6); }
+}
+
+/* Hairline divider */
+.hairline {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Display headline */
+.display {
+  font-family: var(--font-anton), Impact, sans-serif;
+  text-transform: uppercase;
+  line-height: 0.92;
+  letter-spacing: 0.005em;
+  font-weight: 400;
+}
+
+/* Outlined display text variant — restored to proper visibility */
+.display-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(240, 240, 248, 0.55);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---- Water cursor & click ripple --------------------------------- */
+@media (hover: hover) {
+  body { cursor: none; }
+}
+
+#water-cursor {
+  position: fixed;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(45, 120, 200, 0.9);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  transition: transform 0.08s ease, width 0.15s ease, height 0.15s ease, opacity 0.15s ease;
+  display: none;
+}
+
+#water-cursor-ring {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(45, 120, 200, 0.5);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: left 0.12s ease, top 0.12s ease;
+  display: none;
+}
+
+@media (hover: hover) {
+  #water-cursor, #water-cursor-ring { display: block; }
+}
+
+.water-ripple {
+  position: fixed;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(45, 120, 200, 0.7);
+  pointer-events: none;
+  z-index: 9997;
+  transform: translate(-50%, -50%);
+  animation: waterRipple 0.85s ease-out forwards;
+}
+
+.water-ripple-2 {
+  position: fixed;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(45, 120, 200, 0.4);
+  pointer-events: none;
+  z-index: 9996;
+  transform: translate(-50%, -50%);
+  animation: waterRipple 0.85s ease-out 0.12s forwards;
+}
+
+@keyframes waterRipple {
+  0%   { width: 0;     height: 0;     opacity: 0.9; }
+  100% { width: 140px; height: 140px; opacity: 0;   }
+}
+
+/* ---- Light beam animation --------------------------------------- */
+@keyframes beamFade {
+  0%, 100% { opacity: 0; }
+  40%, 60%  { opacity: 1; }
+}
+
+/* ---- Glass card utility ---------------------------------------- */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(16px);
+}
+
+/* ---- Improved body text readability ---------------------------- */
+p, li {
+  line-height: 1.75;
+}
+
+/* ---- Service popup animation ----------------------------------- */
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+.modal-animate {
+  animation: modalIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ---- Chatbot message bubble ------------------------------------ */
+@keyframes messagePop {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.msg-pop {
+  animation: messagePop 0.2s ease-out forwards;
+}
+
+/* ---- Hero animated gradient (video fallback) ------------------- */
+@keyframes heroBg {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
