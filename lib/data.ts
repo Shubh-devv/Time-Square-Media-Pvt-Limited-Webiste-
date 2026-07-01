@@ -21,6 +21,7 @@ export const COMPANY = {
   legalName: "TimesSquare Media Services Pvt. Ltd.",
   tagline: "Out-of-Home. Amplified by Digital.",
   phone: "+91 95060 17729",
+  phone2: "+91 98387 98388",
   email: "info@timesquaremedia.in",
   socials: [
     { label: "Instagram", href: "https://www.instagram.com/timesquare_media/" },

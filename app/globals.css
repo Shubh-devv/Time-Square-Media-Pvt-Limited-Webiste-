@@ -130,40 +130,12 @@ a {
   text-decoration: none;
 }
 
-/* ---- Water cursor & click ripple --------------------------------- */
+/* ---- Custom cursor — hide native on desktop ------------------- */
 @media (hover: hover) {
-  body { cursor: none; }
-}
-
-#water-cursor {
-  position: fixed;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: rgba(45, 120, 200, 0.9);
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: screen;
-  transition: transform 0.08s ease, width 0.15s ease, height 0.15s ease, opacity 0.15s ease;
-  display: none;
-}
-
-#water-cursor-ring {
-  position: fixed;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid rgba(45, 120, 200, 0.5);
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: left 0.12s ease, top 0.12s ease;
-  display: none;
-}
-
-@media (hover: hover) {
-  #water-cursor, #water-cursor-ring { display: block; }
+  body,
+  body * {
+    cursor: none !important;
+  }
 }
 
 .water-ripple {

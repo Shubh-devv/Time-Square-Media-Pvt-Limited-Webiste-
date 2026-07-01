@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV, SERVICES, CITIES, COMPANY } from "@/lib/data";
-import Logo from "@/components/Logo";
+import Image from "next/image";
 
 /* ── Roll-text link (desktop nav) ───────────────────────────── */
 function RollLink({
@@ -21,15 +21,15 @@ function RollLink({
     <Link href={href} className="group relative inline-block">
       <span className="relative block overflow-hidden leading-none py-0.5">
         <span
-          className={`block font-mono text-[0.68rem] uppercase tracking-[0.22em] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full ${
-            active ? "text-blue" : "text-slate"
+          className={`block font-sans text-[0.82rem] font-bold tracking-[0.01em] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full ${
+            active ? "text-blue" : "text-ink/65"
           }`}
         >
           {label}
         </span>
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-0 block translate-y-full font-mono text-[0.68rem] uppercase tracking-[0.22em] text-blue transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0"
+          className="pointer-events-none absolute inset-0 block translate-y-full font-sans text-[0.82rem] font-bold tracking-[0.01em] text-blue transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0"
         >
           {label}
         </span>
@@ -63,6 +63,124 @@ function PhoneIcon({ className }: { className?: string }) {
 
 const ALL_NAV = [...NAV, { label: "Contact", href: "/contact" }];
 
+/* ── Presence dropdown cities ────────────────────────────────── */
+const PRESENCE_CITIES = [
+  { label: "Lucknow",  href: "/presence/lucknow", code: "LKO", accent: "#2D78C8" },
+  { label: "Kanpur",   href: "/presence/kanpur",  code: "KNP", accent: "#E67E22" },
+  { label: "Delhi",    href: "/presence/delhi",   code: "DEL", accent: "#C0392B" },
+  { label: "Bhopal",   href: "/presence/bhopal",  code: "BHO", accent: "#16A085" },
+  { label: "Agra",     href: "/presence/agra",    code: "AGR", accent: "#8E44AD" },
+];
+
+function PresenceMenu({ pathname, dark = false }: { pathname: string; dark?: boolean }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout>>();
+  const isActive = pathname.startsWith("/presence");
+
+  const show = () => { clearTimeout(closeTimer.current); setMenuOpen(true); };
+  const hide = () => { closeTimer.current = setTimeout(() => setMenuOpen(false), 160); };
+
+  return (
+    <div className="relative flex items-center gap-1" onMouseEnter={show} onMouseLeave={hide}>
+      {/* Clicking the label navigates directly to /presence */}
+      <Link href="/presence" className="group relative inline-block">
+        <span className="relative block overflow-hidden leading-none py-0.5">
+          <span
+            className={`block font-sans text-[0.82rem] font-bold tracking-[0.01em] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full ${
+              isActive ? (dark ? "text-white" : "text-blue") : (dark ? "text-white/80" : "text-ink/65")
+            }`}
+          >
+            Presence
+          </span>
+          <span
+            aria-hidden
+            className={`pointer-events-none absolute inset-0 block translate-y-full font-sans text-[0.82rem] font-bold tracking-[0.01em] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 ${dark ? "text-white" : "text-blue"}`}
+          >
+            Presence
+          </span>
+        </span>
+        <span
+          className={`absolute -bottom-0.5 left-0 h-px bg-blue transition-all duration-300 ${
+            isActive ? "w-full" : "w-0 group-hover:w-full group-hover:bg-blue/40"
+          }`}
+        />
+      </Link>
+
+      {/* Chevron */}
+      <svg
+        aria-hidden
+        className={`pointer-events-none h-2 w-2 shrink-0 transition-all duration-300 ${
+          menuOpen
+              ? (dark ? "rotate-180 text-white" : "rotate-180 text-blue")
+              : isActive
+                ? (dark ? "text-white/60" : "text-blue/60")
+                : (dark ? "text-white/40" : "text-slate/40")
+        }`}
+        fill="none"
+        viewBox="0 0 10 6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      >
+        <path d="M1 1l4 4 4-4" />
+      </svg>
+
+      {/* Dropdown */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8, scaleY: 0.9 }}
+            animate={{ opacity: 1, y: 0,  scaleY: 1   }}
+            exit={{    opacity: 0, y: -8, scaleY: 0.9 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            style={{ transformOrigin: "top center" }}
+            className="absolute left-1/2 top-full z-[60] mt-3 w-52 -translate-x-1/2 overflow-hidden rounded-xl border border-ink-line bg-ink shadow-[0_20px_60px_rgba(0,0,0,0.72)]"
+          >
+            {/* Header label */}
+            <div className="border-b border-ink-line px-4 py-2">
+              <p className="font-sans text-[0.6rem] font-bold uppercase tracking-[0.18em] text-slate/40">
+                Our Presence
+              </p>
+            </div>
+
+            {/* City rows */}
+            {PRESENCE_CITIES.map((city) => (
+              <Link
+                key={city.href}
+                href={city.href}
+                onClick={() => setMenuOpen(false)}
+                className="group flex items-center gap-3 px-4 py-2.5 transition-colors duration-150 hover:bg-ink-soft"
+              >
+                <span
+                  className="h-1.5 w-1.5 shrink-0 rounded-full transition-all duration-200 group-hover:scale-125"
+                  style={{ background: city.accent }}
+                />
+                <span className="font-sans text-[0.84rem] font-semibold text-paper/70 transition-colors duration-150 group-hover:text-paper">
+                  {city.label}
+                </span>
+              </Link>
+            ))}
+
+            {/* Custom / Pan India */}
+            <div className="border-t border-ink-line">
+              <Link
+                href="/contact"
+                onClick={() => setMenuOpen(false)}
+                className="group flex items-center gap-3 px-4 py-3 transition-colors duration-150 hover:bg-blue/10"
+              >
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-blue" />
+                <span className="font-sans text-[0.84rem] font-bold text-blue">
+                  Custom / Pan India
+                </span>
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen]         = useState(false);
@@ -84,92 +202,145 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── Header bar ──────────────────────────────────────────── */}
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled || open
-            ? "border-b border-ink-line bg-ink/95 backdrop-blur-xl"
-            : "bg-transparent"
-        }`}
-      >
-        <div className="shell flex h-16 items-center justify-between md:h-20">
+      {/* ── Transparent full-width navbar — glassmorphism chips ─── */}
+      <header className="fixed left-0 right-0 top-0 z-50 w-full">
+        <div className="flex h-[72px] items-center gap-2.5 px-5 md:px-10 lg:px-16">
 
-          {/* ── Logo ──────────────────────────────────────────── */}
-          <Logo imageClassName="h-9 w-auto md:h-11" />
+          {/* ── Logo chip — bright frosted white glass ───────────────── */}
+          <div
+            style={{
+              background: "rgba(255,255,255,0.93)",
+              border: "1px solid rgba(45,120,200,0.3)",
+              boxShadow: "0 4px 32px rgba(45,120,200,0.25), 0 1px 0 rgba(255,255,255,1) inset",
+              backdropFilter: "blur(28px)",
+              WebkitBackdropFilter: "blur(28px)",
+            }}
+            className={`flex h-16 shrink-0 items-center rounded-2xl px-5 transition-all duration-300 hover:shadow-[0_6px_40px_rgba(45,120,200,0.4)] ${
+              open ? "pointer-events-none opacity-0" : "opacity-100"
+            }`}
+          >
+            <Link href="/" aria-label="Home">
+              <Image
+                src="/Hero Video/Logo.png"
+                alt="TimeSquare Media Logo"
+                width={130}
+                height={22}
+              />
+            </Link>
+          </div>
 
-          {/* ── Right controls ──────────────────────────────────── */}
-          <div className="flex items-center gap-2 md:gap-4">
+          {/* Spacer */}
+          <div className="flex-1" />
 
-            {/* Desktop roll-links — fade out when menu is open */}
-            <nav
-              className={`hidden items-center gap-7 transition-opacity duration-300 md:flex ${
-                open ? "pointer-events-none opacity-0" : "opacity-100"
-              }`}
-            >
-              {NAV.map((item) => (
-                <RollLink
+          {/* ── Desktop nav — each link its own glass chip ──────────── */}
+          <nav
+            className={`hidden items-center gap-2 md:flex ${
+              open ? "pointer-events-none opacity-0" : "opacity-100"
+            }`}
+          >
+            {NAV.map((item) =>
+              item.label === "Presence" ? (
+                <div
                   key={item.href}
-                  href={item.href}
-                  label={item.label}
-                  active={pathname === item.href}
-                />
-              ))}
-            </nav>
+                  style={{
+                    background: "#ffffff",
+                    border: "1px solid rgba(45,120,200,0.25)",
+                    boxShadow: "0 4px 24px rgba(45,120,200,0.18), inset 0 1px 0 rgba(255,255,255,1)",
+                    backdropFilter: "blur(28px)",
+                    WebkitBackdropFilter: "blur(28px)",
+                  }}
+                  className="rounded-full px-4 py-2 transition-all duration-200 hover:shadow-[0_6px_32px_rgba(45,120,200,0.35)]"
+                >
+                  <PresenceMenu pathname={pathname} />
+                </div>
+              ) : (
+                <div
+                  key={item.href}
+                  style={{
+                    background: pathname === item.href
+                      ? "linear-gradient(135deg, #2D78C8 0%, #1a4a8a 100%)"
+                      : "#ffffff",
+                    border: pathname === item.href
+                      ? "1px solid rgba(93,163,232,0.7)"
+                      : "1px solid rgba(45,120,200,0.25)",
+                    boxShadow: pathname === item.href
+                      ? "0 4px 28px rgba(45,120,200,0.55), inset 0 1px 0 rgba(255,255,255,0.2)"
+                      : "0 4px 24px rgba(45,120,200,0.18), inset 0 1px 0 rgba(255,255,255,1)",
+                    backdropFilter: "blur(28px)",
+                    WebkitBackdropFilter: "blur(28px)",
+                  }}
+                  className="rounded-full px-4 py-2 transition-all duration-200 hover:shadow-[0_6px_32px_rgba(45,120,200,0.35)]"
+                >
+                  <Link
+                    href={item.href}
+                    className={`font-sans text-[0.82rem] font-bold tracking-[0.01em] transition-colors duration-200 ${
+                      pathname === item.href ? "text-white" : "text-[#1e3a5f] hover:text-blue"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </div>
+              )
+            )}
+          </nav>
 
-            {/* ── Call Us button ─────────────────────────────────── */}
-            <a
-              href={`tel:${COMPANY.phone}`}
-              className={`group flex items-center gap-1.5 border border-blue/20 px-2.5 py-2 transition-all duration-300 hover:border-blue hover:bg-blue/5 hover:text-blue md:gap-2 md:px-3.5 md:py-2.5 ${
-                open ? "pointer-events-none opacity-0" : "text-slate"
-              }`}
-              aria-label={`Call us at ${COMPANY.phone}`}
-            >
-              {/* Subtle pulse ring */}
-              <span className="relative flex h-4 w-4 items-center justify-center md:h-[18px] md:w-[18px]">
-                <span className="absolute inset-0 animate-ping rounded-full bg-blue/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <PhoneIcon className="relative h-3.5 w-3.5 md:h-4 md:w-4" />
-              </span>
-              <span className="hidden font-mono text-[0.6rem] uppercase tracking-[0.18em] md:inline">
-                Call Us
-              </span>
-            </a>
+          {/* ── Phone chip — blue glow glass ───────────────────────── */}
+          <a
+            href={`tel:${COMPANY.phone}`}
+            aria-label={`Call us at ${COMPANY.phone}`}
+            style={{
+              background: "rgba(45,120,200,0.32)",
+              border: "1px solid rgba(93,163,232,0.65)",
+              boxShadow: "0 4px 32px rgba(45,120,200,0.42), inset 0 1px 0 rgba(255,255,255,0.18)",
+              backdropFilter: "blur(28px)",
+              WebkitBackdropFilter: "blur(28px)",
+            }}
+            className={`ml-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-all duration-300 hover:shadow-[0_6px_40px_rgba(45,120,200,0.65)] ${
+              open ? "pointer-events-none opacity-0" : "opacity-100"
+            }`}
+          >
+            <PhoneIcon className="h-[15px] w-[15px] text-white" />
+          </a>
 
-            {/* ── Hamburger — all screen sizes ──────────────────── */}
-            <button
-              onClick={() => setOpen((v) => !v)}
-              className="group relative flex h-10 w-10 items-center justify-center"
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
-            >
-              {/* Hover / active ring */}
+          {/* ── Hamburger chip — dark glass / blue when open ────────── */}
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            style={{
+              background: open
+                ? "linear-gradient(135deg, #2D78C8 0%, #1a4a8a 100%)"
+                : "rgba(6,12,36,0.72)",
+              border: open
+                ? "1px solid rgba(93,163,232,0.75)"
+                : "1px solid rgba(45,120,200,0.48)",
+              boxShadow: open
+                ? "0 4px 32px rgba(45,120,200,0.65), inset 0 1px 0 rgba(255,255,255,0.2)"
+                : "0 4px 24px rgba(45,120,200,0.22), inset 0 1px 0 rgba(255,255,255,0.07)",
+              backdropFilter: "blur(28px)",
+              WebkitBackdropFilter: "blur(28px)",
+            }}
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-all duration-500 hover:shadow-[0_6px_40px_rgba(45,120,200,0.5)]"
+          >
+            <span className="relative flex h-[13px] w-[18px] flex-col justify-between">
               <span
-                className={`absolute inset-0 rounded-full border transition-all duration-300 ${
-                  open
-                    ? "scale-110 border-blue/40"
-                    : "scale-100 border-transparent group-hover:scale-110 group-hover:border-blue/30"
+                className={`block h-[1.5px] w-full origin-center rounded-full bg-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  open ? "translate-y-[5.75px] rotate-45" : ""
                 }`}
               />
+              <span
+                className={`block h-[1.5px] rounded-full bg-white transition-all duration-300 ${
+                  open ? "w-0 opacity-0" : "w-full opacity-100"
+                }`}
+              />
+              <span
+                className={`block h-[1.5px] w-full origin-center rounded-full bg-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  open ? "-translate-y-[5.75px] -rotate-45" : ""
+                }`}
+              />
+            </span>
+          </button>
 
-              {/* Three lines → X */}
-              <span className="relative flex h-5 w-6 flex-col justify-between">
-                <span
-                  className={`block h-[1.5px] w-full rounded-full bg-paper transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    open ? "translate-y-[9px] rotate-45" : ""
-                  }`}
-                />
-                <span
-                  className={`block h-[1.5px] rounded-full bg-paper transition-all duration-300 ${
-                    open ? "w-0 opacity-0" : "w-full opacity-100"
-                  }`}
-                />
-                <span
-                  className={`block h-[1.5px] w-full rounded-full bg-paper transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    open ? "-translate-y-[9px] -rotate-45" : ""
-                  }`}
-                />
-              </span>
-            </button>
-          </div>
         </div>
       </header>
 
@@ -189,7 +360,7 @@ export default function Navbar() {
             className="fixed inset-0 z-40 flex flex-col overflow-hidden bg-ink"
           >
             {/* Matches header height */}
-            <div className="h-16 flex-none md:h-20" />
+            <div className="h-[72px] flex-none" />
 
             {/*
               Mobile  → grid-rows [3fr nav | 2fr details]  (stacked, no scroll)
@@ -240,34 +411,57 @@ export default function Navbar() {
                 </nav>
               </div>
 
-              {/* ── DETAILS: Services + Offices + Contact ──────────── */}
-              <div className="flex min-h-0 flex-col justify-between px-6 py-3 md:px-12 md:py-8">
+              {/* ── DETAILS: Services + Offices + Contact — SOLID WHITE PANEL ── */}
+              <div
+                className="flex min-h-0 flex-col justify-between px-6 py-3 md:px-12 md:py-8"
+                style={{ background: "#FFFFFF" }}
+              >
 
-                {/* Services */}
+                {/* ── Services ── */}
                 <motion.section
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.44, duration: 0.5 }}
                 >
-                  <p className="mb-1.5 font-mono text-[0.56rem] uppercase tracking-[0.24em] text-slate/40">
-                    Services
+                  <p
+                    className="mb-2 font-mono text-[0.58rem] uppercase tracking-[0.28em]"
+                    style={{ color: "#2D78C8" }}
+                  >
+                    What We Offer
                   </p>
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+                  <div className="grid grid-cols-2 gap-x-3 gap-y-2">
                     {SERVICES.map((s, i) => (
                       <motion.div
                         key={s.code}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5 + i * 0.045 }}
+                        transition={{ delay: 0.5 + i * 0.04 }}
                       >
                         <Link
                           href="/services"
-                          className="group flex items-center gap-1.5 transition-colors duration-300"
+                          className="group flex items-center gap-2"
                         >
-                          <span className="font-mono text-[0.58rem] font-semibold text-blue/60 transition-colors duration-300 group-hover:text-blue">
+                          <span
+                            className="rounded px-1.5 py-0.5 font-mono text-[0.52rem] font-bold tracking-wider transition-all duration-200 group-hover:text-white"
+                            style={{
+                              color: "#2D78C8",
+                              background: "rgba(45,120,200,0.12)",
+                            }}
+                            onMouseEnter={(e) => {
+                              (e.currentTarget as HTMLElement).style.background = "#2D78C8";
+                              (e.currentTarget as HTMLElement).style.color = "#fff";
+                            }}
+                            onMouseLeave={(e) => {
+                              (e.currentTarget as HTMLElement).style.background = "rgba(45,120,200,0.12)";
+                              (e.currentTarget as HTMLElement).style.color = "#2D78C8";
+                            }}
+                          >
                             {s.code}
                           </span>
-                          <span className="text-[0.78rem] text-paper/50 transition-colors duration-300 group-hover:text-paper md:text-sm">
+                          <span
+                            className="text-[0.8rem] font-medium transition-colors duration-200"
+                            style={{ color: "#1a1a2e" }}
+                          >
                             {s.title}
                           </span>
                         </Link>
@@ -276,33 +470,45 @@ export default function Navbar() {
                   </div>
                 </motion.section>
 
-                {/* ── All Offices — bigger text for easy reading ─── */}
+                {/* ── All Offices ── */}
                 <motion.section
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.5 }}
-                  className="border-t border-ink-line pt-3 md:pt-5"
+                  style={{ borderTop: "1px solid #e3eaf5", paddingTop: "12px" }}
                 >
-                  <p className="mb-2.5 font-mono text-[0.56rem] uppercase tracking-[0.24em] text-slate/40">
+                  <p
+                    className="mb-3 font-mono text-[0.58rem] uppercase tracking-[0.28em]"
+                    style={{ color: "#2D78C8" }}
+                  >
                     Our Offices
                   </p>
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-3 md:grid-cols-3 md:gap-y-4">
+                  <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
                     {CITIES.map((city) => (
-                      <div key={city.city}>
-                        {/* City name — prominently bigger */}
-                        <p className="font-mono text-sm font-bold uppercase tracking-[0.1em] text-blue md:text-[0.95rem]">
+                      <div
+                        key={city.city}
+                        className="rounded-lg p-2.5"
+                        style={{ background: "#f0f5ff", border: "1px solid #d0e0f5" }}
+                      >
+                        <p
+                          className="font-mono text-[0.72rem] font-bold uppercase tracking-[0.1em]"
+                          style={{ color: "#2D78C8" }}
+                        >
                           {city.city}
                         </p>
-                        {/* Phone number — larger and readable */}
                         {city.phone ? (
                           <a
                             href={`tel:${city.phone}`}
-                            className="mt-1 block font-mono text-xs leading-snug text-slate/60 transition-colors hover:text-blue md:text-[0.72rem]"
+                            className="mt-1 block font-mono text-[0.64rem] leading-snug transition-colors hover:text-blue"
+                            style={{ color: "#3a3a5c" }}
                           >
                             {city.phone}
                           </a>
                         ) : (
-                          <p className="mt-1 font-mono text-[0.65rem] text-slate/30">
+                          <p
+                            className="mt-1 font-mono text-[0.6rem]"
+                            style={{ color: "#888898" }}
+                          >
                             Regional
                           </p>
                         )}
@@ -311,23 +517,33 @@ export default function Navbar() {
                   </div>
                 </motion.section>
 
-                {/* Contact details + CTA */}
+                {/* ── Contact + CTA ── */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.74, duration: 0.45 }}
-                  className="flex items-center justify-between gap-4 border-t border-ink-line pt-3 md:pt-5"
+                  className="flex items-center justify-between gap-4 pt-3"
+                  style={{ borderTop: "1px solid #e3eaf5" }}
                 >
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1.5">
                     <a
                       href={`tel:${COMPANY.phone}`}
-                      className="font-mono text-[0.65rem] text-slate transition-colors hover:text-blue md:text-xs"
+                      className="font-mono text-[0.65rem] font-medium transition-colors hover:text-blue md:text-xs"
+                      style={{ color: "#3a3a5c" }}
                     >
                       {COMPANY.phone}
                     </a>
                     <a
+                      href={`tel:${COMPANY.phone2}`}
+                      className="font-mono text-[0.65rem] font-medium transition-colors hover:text-blue md:text-xs"
+                      style={{ color: "#3a3a5c" }}
+                    >
+                      {COMPANY.phone2}
+                    </a>
+                    <a
                       href={`mailto:${COMPANY.email}`}
-                      className="font-mono text-[0.65rem] text-slate transition-colors hover:text-blue md:text-xs"
+                      className="font-mono text-[0.65rem] font-medium transition-colors hover:text-blue md:text-xs"
+                      style={{ color: "#3a3a5c" }}
                     >
                       {COMPANY.email}
                     </a>
@@ -335,13 +551,19 @@ export default function Navbar() {
 
                   <Link
                     href="/contact"
-                    className="group relative shrink-0 overflow-hidden border border-blue px-4 py-2.5 font-mono text-[0.62rem] font-bold uppercase tracking-[0.16em] text-blue transition-colors duration-500 hover:text-paper md:px-6 md:py-3 md:text-xs"
+                    className="shrink-0 rounded-sm px-4 py-2.5 font-mono text-[0.62rem] font-bold uppercase tracking-[0.16em] text-white transition-all duration-300 md:px-6 md:py-3 md:text-xs"
+                    style={{
+                      background: "#2D78C8",
+                      boxShadow: "0 4px 14px rgba(45,120,200,0.35)",
+                    }}
+                    onMouseEnter={(e) =>
+                      ((e.currentTarget as HTMLElement).style.background = "#5BA3E8")
+                    }
+                    onMouseLeave={(e) =>
+                      ((e.currentTarget as HTMLElement).style.background = "#2D78C8")
+                    }
                   >
-                    <span
-                      aria-hidden
-                      className="absolute inset-0 -translate-x-full bg-blue transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0"
-                    />
-                    <span className="relative z-10">Get in touch →</span>
+                    Get in touch →
                   </Link>
                 </motion.div>
 

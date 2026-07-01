@@ -22,10 +22,10 @@ export default function About() {
         <div className="md:col-span-7">
           <Reveal delay={0.1}>
             <p className="text-lg leading-relaxed text-paper/80">
-              Time Square Media is North India's trusted partner for advertising excellence — connecting brands with consumers since 2012. Our team delivers the full spectrum: high-impact OOH hoardings, mobile media, digital campaigns, BTL activations, retail consultancy and web solutions.
+              We started in Lucknow in 2012 with a simple idea — help brands get seen in places people actually look. Today we work across 6 cities, handling everything from 40-foot hoardings to Google Ads to shop signage, all under one roof.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-slate">
-              From a single billboard in Lucknow to multi-city campaigns spanning Delhi, Kanpur, Bhopal, Agra and Prayagraj — our in-house fabrication unit and single-point-of-contact model ensure flawless execution, on time, within budget.
+              We own our fabrication unit, so there's no outsourcing, no middlemen, no "let me check with the printer" delays. One hoarding in Kanpur or a full multi-city launch — the same team takes it from brief to billboard.
             </p>
           </Reveal>
 

@@ -1,8 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { WORK } from "@/lib/data";
 import Reveal from "./Reveal";
+
+const WORK_IMAGES = [
+  "/clients/Rudra Long.png",
+  "/clients/Digiway Long.jpeg",
+  "/clients/Bluestone long.jpeg",
+  "/clients/nestle-long.jpeg",
+  "/clients/Siggnature.jpg",
+  "/clients/Tea Valley.jpg",
+  "/clients/Pan Bahar.jpg",
+];
 
 export default function Work({ previewCount }: { previewCount?: number }) {
   const items = previewCount ? WORK.slice(0, previewCount) : WORK;
@@ -28,27 +39,42 @@ export default function Work({ previewCount }: { previewCount?: number }) {
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((w, i) => (
             <Reveal key={w.name} delay={0.04 * i}>
-              <article className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-2xl border border-ink-line bg-ink-soft p-6 transition-transform duration-300 hover:-translate-y-1">
-                {/* Gradient overlay */}
+              <article className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-2xl border border-ink-line bg-ink-soft transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_60px_rgba(45,120,200,0.22)]">
+                {/* Campaign photo */}
+                {WORK_IMAGES[i] && (
+                  <Image
+                    src={WORK_IMAGES[i]}
+                    alt={w.name}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
+                  />
+                )}
+
+                {/* Dark gradient overlay so text stays readable */}
                 <div
                   aria-hidden
-                  className="absolute inset-0 opacity-60 transition-opacity duration-500 group-hover:opacity-90"
-                  style={{
-                    background:
-                      i % 2 === 0
-                        ? "radial-gradient(120% 80% at 80% 0%, rgba(45,120,200,0.25), transparent 60%)"
-                        : "radial-gradient(120% 80% at 20% 0%, rgba(91,163,232,0.18), transparent 60%)",
-                  }}
+                  className="absolute inset-0 transition-opacity duration-500"
+                  style={{ background: "linear-gradient(to top, rgba(6,6,16,0.92) 0%, rgba(6,6,16,0.45) 50%, rgba(6,6,16,0.15) 100%)" }}
                 />
+
+                {/* Blue tint on hover */}
                 <div
                   aria-hidden
-                  className="absolute right-5 top-5 font-display text-7xl text-paper/5 transition-colors group-hover:text-paper/10"
+                  className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  style={{ background: "linear-gradient(135deg, rgba(45,120,200,0.22) 0%, transparent 60%)" }}
+                />
+
+                {/* Card number */}
+                <div
+                  aria-hidden
+                  className="absolute right-5 top-5 font-display text-7xl text-paper/10 transition-colors group-hover:text-paper/20"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </div>
 
-                <div className="relative z-10">
-                  <h3 className="font-display text-2xl uppercase leading-tight tracking-wide transition-colors group-hover:text-blue md:text-3xl">
+                <div className="relative z-10 p-6">
+                  <h3 className="font-display text-2xl uppercase leading-tight tracking-wide text-paper transition-colors group-hover:text-blue md:text-3xl">
                     {w.name}
                   </h3>
                   <p className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-slate">

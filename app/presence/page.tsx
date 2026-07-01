@@ -4,9 +4,9 @@ import Presence from "@/components/Presence";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Our Presence",
+  title: "OOH Advertising Presence | Time Square Media",
   description:
-    "Time Square Media operates across six Indian cities — Lucknow, Kanpur, Delhi, Bhopal, Agra and Prayagraj. Local teams, national reach.",
+    "Time Square Media operates across six Indian cities — Lucknow, Kanpur, Delhi, Bhopal, Agra and Prayagraj. View complete OOH media plans with available formats, sites and rates for each city.",
 };
 
 export default function PresencePage() {
@@ -20,24 +20,38 @@ export default function PresencePage() {
             <span className="text-blue">One network.</span>
           </>
         }
-        subtitle="Boots on the ground across North and Central India — local teams who know every prime site in their city, delivering national-scale campaigns with local precision."
+        subtitle="Complete OOH media plans for every city we operate in — hoardings, mobile media, LED screens and more. Click any city to explore available inventory, key corridors and past campaigns."
       />
+
       <Presence />
 
-      {/* CTA */}
+      {/* ── CTA ── */}
       <section className="border-t border-ink-line py-24 text-center md:py-32">
         <div className="shell">
-          <p className="eyebrow mb-6 justify-center">Your city is next</p>
+          <p className="eyebrow mb-6 justify-center">Your city. Your campaign.</p>
           <h2 className="display mx-auto max-w-3xl text-[clamp(2.2rem,6vw,4.5rem)]">
             Want to own<br />
             <span className="text-blue">your streets?</span>
           </h2>
-          <Link
-            href="/contact"
-            className="mt-10 inline-block rounded-[2px] bg-blue px-9 py-4 font-mono text-sm font-bold uppercase tracking-[0.18em] text-paper transition-all hover:bg-blue-light"
-          >
-            Talk to us
-          </Link>
+          <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-slate">
+            Tell us your city and budget — we'll send a complete OOH media plan with site photos, reach estimates and rates within 24 hours.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/contact"
+              className="inline-block rounded-[2px] bg-blue px-9 py-4 font-mono text-sm font-bold uppercase tracking-[0.18em] text-paper transition-all hover:bg-blue-light"
+            >
+              Request a Media Plan
+            </Link>
+            <a
+              href="https://wa.me/919506017729"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block rounded-[2px] border border-ink-line px-9 py-4 font-mono text-sm uppercase tracking-[0.18em] text-slate transition-all hover:border-blue hover:text-blue"
+            >
+              WhatsApp Us →
+            </a>
+          </div>
         </div>
       </section>
     </main>

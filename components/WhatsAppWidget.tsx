@@ -3,7 +3,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const WA_NUMBER = "919506017729";
+const CONTACTS = [
+  { label: "Lucknow HQ",  number: "919506017729" },
+  { label: "Delhi Office", number: "919838798388" },
+];
 
 const SERVICES_LIST = [
   "OOH / Hoarding Advertising",
@@ -34,9 +37,10 @@ type FormState = {
 const EMPTY: FormState = { name: "", phone: "", service: "", budget: "", message: "" };
 
 export default function WhatsAppWidget() {
-  const [open, setOpen]   = useState(false);
-  const [form, setForm]   = useState<FormState>(EMPTY);
-  const [sent, setSent]   = useState(false);
+  const [open, setOpen]     = useState(false);
+  const [form, setForm]     = useState<FormState>(EMPTY);
+  const [sent, setSent]     = useState(false);
+  const [contactIdx, setContactIdx] = useState(0);
 
   const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm(f => ({ ...f, [k]: e.target.value }));
@@ -53,7 +57,7 @@ export default function WhatsAppWidget() {
       form.message ? `Message: ${form.message}` : "",
     ].filter(Boolean).join("\n");
 
-    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`, "_blank");
+    window.open(`https://wa.me/${CONTACTS[contactIdx].number}?text=${encodeURIComponent(text)}`, "_blank");
     setSent(true);
     setTimeout(() => {
       setOpen(false);
@@ -141,6 +145,25 @@ export default function WhatsAppWidget() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Contact chooser */}
+                  <div className="flex gap-2">
+                    {CONTACTS.map((c, idx) => (
+                      <button
+                        key={c.label}
+                        type="button"
+                        onClick={() => setContactIdx(idx)}
+                        className="flex-1 rounded-[2px] border py-2 font-mono text-[0.6rem] uppercase tracking-[0.14em] transition-all duration-200"
+                        style={
+                          contactIdx === idx
+                            ? { borderColor: "#25D366", background: "rgba(37,211,102,0.1)", color: "#25D366" }
+                            : { borderColor: "rgba(255,255,255,0.08)", color: "rgba(136,136,152,0.7)", background: "transparent" }
+                        }
+                      >
+                        {c.label}
+                      </button>
+                    ))}
+                  </div>
+
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label className={labelCls}>Your Name *</label>
@@ -188,7 +211,7 @@ export default function WhatsAppWidget() {
                   </button>
 
                   <p className="text-center font-mono text-[0.57rem] text-slate/70">
-                    Sent to +91 95060 17729 · Reply within 30 mins
+                    Sending to {CONTACTS[contactIdx].label} · Reply within 30 mins
                   </p>
                 </form>
               )}

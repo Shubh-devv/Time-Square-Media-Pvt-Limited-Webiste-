@@ -4,6 +4,7 @@ import About from "@/components/About";
 import Impact from "@/components/Impact";
 import Services from "@/components/Services";
 import Work from "@/components/Work";
+import CampaignBanner from "@/components/CampaignBanner";
 import Clients from "@/components/Clients";
 import Testimonials from "@/components/Testimonials";
 import { TICKER_TERMS } from "@/lib/data";
@@ -18,6 +19,7 @@ export default function Home() {
       <Impact />
       <Services preview />
       <Work previewCount={3} />
+      <CampaignBanner />
       <Clients />
       <Testimonials />
 

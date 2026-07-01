@@ -51,6 +51,12 @@ export default function Contact() {
                   >
                     {COMPANY.phone}
                   </a>
+                  <a
+                    href={`tel:${COMPANY.phone2}`}
+                    className="mt-0.5 block text-lg transition-colors hover:text-blue"
+                  >
+                    {COMPANY.phone2}
+                  </a>
                 </div>
                 <div>
                   <p className="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-slate-dim">

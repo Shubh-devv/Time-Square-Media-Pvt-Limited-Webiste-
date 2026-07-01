@@ -225,8 +225,8 @@ export default function Hero() {
         />
       ))}
 
-      {/* ── Navbar height spacer ─────────────────────────────────── */}
-      <div aria-hidden className="flex-shrink-0" style={{ height: "72px" }} />
+      {/* ── Pill top-4 (16px) + h-[52px] + breathing gap ── */}
+      <div aria-hidden className="flex-shrink-0" style={{ height: "84px" }} />
 
       {/* ── Main content — grows to fill remaining viewport height ── */}
       <div
@@ -301,7 +301,7 @@ export default function Hero() {
               transition={{ delay: 0.9 }}
               className="mt-4 max-w-lg text-sm leading-[1.75] text-paper/75 md:text-base"
             >
-              From Lucknow to Delhi — 12+ years of high-impact OOH billboards, performance digital campaigns and web solutions that make brands impossible to ignore across 6 Indian cities.
+              12 years. 6 cities. We put your brand on hoardings thousands drive past every single day — and follow them home with digital campaigns that actually convert. One team, everything in-house, zero runaround.
             </motion.p>
 
             {/* CTA row */}
@@ -323,15 +323,14 @@ export default function Hero() {
               >
                 Free consultation
               </Link>
-              <a
-                href="tel:+919506017729"
-                className="flex items-center gap-1.5 font-mono text-xs text-slate transition-colors hover:text-blue"
-              >
+              <div className="flex items-center gap-1.5 font-mono text-xs text-slate">
                 <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9a19.79 19.79 0 01-3.07-8.72A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z" />
                 </svg>
-                +91 95060 17729
-              </a>
+                <a href="tel:+919506017729" className="transition-colors hover:text-blue">+91 95060 17729</a>
+                <span className="text-slate/40">·</span>
+                <a href="tel:+919838798388" className="transition-colors hover:text-blue">+91 98387 98388</a>
+              </div>
             </motion.div>
 
             {/* Stats + cities strip */}
@@ -450,12 +449,11 @@ export default function Hero() {
                 <p className="font-mono text-[0.54rem] uppercase tracking-[0.18em] text-blue">
                   Call us now
                 </p>
-                <a
-                  href="tel:+919506017729"
-                  className="mt-0.5 block font-display text-[1.15rem] leading-tight text-paper transition-colors hover:text-blue"
-                >
-                  +91 95060 17729
-                </a>
+                <div className="mt-0.5 flex items-center gap-2 font-display text-[1.15rem] leading-tight text-paper">
+                  <a href="tel:+919506017729" className="transition-colors hover:text-blue">+91 95060 17729</a>
+                  <span className="text-slate/40 text-sm">·</span>
+                  <a href="tel:+919838798388" className="transition-colors hover:text-blue">+91 98387 98388</a>
+                </div>
                 <p className="mt-0.5 font-mono text-[0.53rem] text-slate">
                   Lucknow · Kanpur · Delhi · 3 more cities
                 </p>
