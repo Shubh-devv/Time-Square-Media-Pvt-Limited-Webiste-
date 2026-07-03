@@ -15,7 +15,7 @@ export default function PageHero({
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden border-b border-ink-line pb-20 pt-36 md:pb-28 md:pt-48">
+    <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden border-b border-ink-line">
       {/* Blurred background image */}
       <div
         aria-hidden
@@ -29,17 +29,17 @@ export default function PageHero({
         }}
       />
       {/* Dark navy overlay */}
-      <div aria-hidden className="absolute inset-0" style={{ background: "rgba(8,12,35,0.78)" }} />
+      <div aria-hidden className="absolute inset-0" style={{ background: "rgba(8,12,35,0.80)" }} />
 
-      {/* Blue ambient glows — fixed opacity to standard values */}
+      {/* Blue ambient glows */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-48 top-0 h-[36rem] w-[36rem] animate-glow rounded-full"
+        className="pointer-events-none absolute -left-32 top-0 h-[28rem] w-[28rem] animate-glow rounded-full md:-left-48 md:h-[36rem] md:w-[36rem]"
         style={{ background: "radial-gradient(circle, rgba(45,120,200,0.18), transparent 65%)" }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute bottom-0 right-0 h-[24rem] w-[24rem] rounded-full"
+        className="pointer-events-none absolute bottom-0 right-0 h-[18rem] w-[18rem] rounded-full md:h-[24rem] md:w-[24rem]"
         style={{ background: "radial-gradient(circle, rgba(45,120,200,0.08), transparent 65%)" }}
       />
 
@@ -50,16 +50,17 @@ export default function PageHero({
         style={{
           backgroundImage:
             "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
+          backgroundSize: "60px 60px",
         }}
       />
 
-      <div className="shell relative z-10">
+      {/* Content — padded to clear navbar on all screen sizes */}
+      <div className="shell relative z-10 pb-16 pt-28 sm:pt-32 md:pt-36 lg:pt-40">
         <motion.p
           initial={reduce ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="eyebrow mb-8"
+          className="eyebrow mb-5 sm:mb-8"
         >
           {eyebrow}
         </motion.p>
@@ -68,7 +69,7 @@ export default function PageHero({
           initial={reduce ? false : { opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="display text-[clamp(2.8rem,9vw,8rem)]"
+          className="display text-[clamp(2rem,8vw,7.5rem)] leading-[0.93]"
         >
           {title}
         </motion.h1>
@@ -78,11 +79,19 @@ export default function PageHero({
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.22 }}
-            className="mt-7 max-w-2xl text-lg leading-relaxed text-paper/70"
+            className="mt-5 max-w-xl text-sm leading-relaxed text-paper/70 sm:mt-7 sm:max-w-2xl sm:text-base md:text-lg"
           >
             {subtitle}
           </motion.p>
         )}
+
+        {/* Bottom accent line */}
+        <motion.div
+          initial={reduce ? false : { scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
+          transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-10 h-px w-16 origin-left bg-blue sm:mt-14 sm:w-20"
+        />
       </div>
     </section>
   );
