@@ -382,6 +382,70 @@ const FAQ: Array<{ key: string; q: RegExp; a: string; followUps?: string[]; conn
     followUps: ["What is OOH advertising?", "Pricing / Quote", "Cities you cover"],
   },
 
+  /* ── How are you / What's up ── */
+  {
+    key: "howareyou",
+    q: /how\s*are\s*you|how\s*r\s*u|what'?s?\s*up|wassup|kaise\s*ho|kaisa\s*hai|kya\s*haal|aap\s*kaise|howdy|how\s*do\s*you\s*do/i,
+    a: "I'm doing great, thank you for asking! 😊\n\nI'm the Time Square Media assistant — always ready to help with advertising, marketing and web solutions.\n\nWhat can I help you with today?",
+    followUps: ["What is OOH advertising?", "Pricing / Quote", "Cities you cover"],
+  },
+
+  /* ── Thanks / Appreciation ── */
+  {
+    key: "thanks",
+    q: /thank|thanks|thank\s*you|thankyou|dhanyawad|shukriya|bahut\s*accha|bahut\s*badiya|great\s*help|helpful|appreciate|useful|perfect|excellent|wonderful|amazing|awesome|superb|brilliant/i,
+    a: "You're most welcome! 😊 Happy to help anytime.\n\nIs there anything else I can assist you with?",
+    followUps: ["Pricing / Quote", "Cities you cover", "Talk to our team"],
+  },
+
+  /* ── Goodbye / Farewell ── */
+  {
+    key: "bye",
+    q: /\b(bye|goodbye|good\s*bye|see\s*you|see\s*ya|cya|take\s*care|alvida|phir\s*milenge|tata|ok\s*bye|okay\s*bye|baad\s*mein|later|ttyl)\b/i,
+    a: "Goodbye! 👋 It was great chatting with you.\n\nFeel free to come back anytime — we're always here.\n\nYou can also reach us at:\n📞 +91 95060 17729\n📧 info@timesquaremedia.in",
+    followUps: ["Talk to our team"],
+  },
+
+  /* ── Yes / Okay / Sure / Affirmation ── */
+  {
+    key: "yes",
+    q: /^(yes|yeah|yep|yup|sure|ok|okay|alright|haan|ha|theek\s*hai|bilkul|zaroor|absolutely|definitely|of\s*course|sounds?\s*good|sounds?\s*great|let'?s?\s*go|go\s*ahead)\.?$/i,
+    a: "Great! What would you like to know?\n\nPick a topic or just type your question:",
+    followUps: ["What is OOH advertising?", "Pricing / Quote", "Cities you cover", "Talk to our team"],
+  },
+
+  /* ── No / Not now ── */
+  {
+    key: "no",
+    q: /^(no|nope|nah|nahi|nahin|not\s*now|not\s*interested|maybe\s*later|later|thik\s*hai)\.?$/i,
+    a: "No problem at all! 😊\n\nWhenever you're ready, we're here. You can also reach us directly:\n📞 +91 95060 17729\n📧 info@timesquaremedia.in",
+    followUps: ["Pricing / Quote", "Talk to our team"],
+  },
+
+  /* ── Help / What can you do ── */
+  {
+    key: "help",
+    q: /^help$|what\s*can\s*you|what\s*do\s*you\s*know|what\s*topics|can\s*you\s*help|kya\s*kar\s*sakte|kya\s*pata\s*hai|help\s*me|i\s*need\s*help/i,
+    a: "Sure! Here's what I can help you with:\n\n• OOH / Billboard advertising\n• Digital marketing (Google, Meta, SEO)\n• Web & app solutions\n• Pricing & packages\n• Cities we operate in\n• How to start a campaign\n• Talk to our sales team\n\nJust type your question or pick a topic below:",
+    followUps: ["What is OOH advertising?", "Pricing / Quote", "Cities you cover", "Talk to our team"],
+  },
+
+  /* ── Compliments about TSM / website ── */
+  {
+    key: "compliment",
+    q: /nice\s*(website|site|work|job|company|agency|team)|good\s*(work|job|website|company)|great\s*(work|job|company|website|agency)|love\s*(this|your|the)\s*(site|website|work|agency)|impressive|well\s*done|shabash|badhiya\s*(company|kaam|website)/i,
+    a: "Thank you so much! 🙏 That means a lot to us.\n\nWe put a lot of heart into everything we do — from campaigns to this website!\n\nIs there something specific we can help you with?",
+    followUps: ["What is OOH advertising?", "Pricing / Quote", "Talk to our team"],
+  },
+
+  /* ── Good morning / evening / night ── */
+  {
+    key: "timegreeting",
+    q: /good\s*(morning|afternoon|evening|night)|subah|shaam|raat|suprabhat/i,
+    a: "Good day! 🙏 Welcome to Time Square Media.\n\nHow can I assist you today?",
+    followUps: ["What is OOH advertising?", "Pricing / Quote", "Cities you cover"],
+  },
+
   /* ── Talk to team / human ── */
   {
     key: "team",
@@ -546,7 +610,7 @@ function getResponse(input: string, forceLang?: Lang): { a: string; followUps?: 
 
   if (t?.fallback) return { a: t.fallback.a, followUps: t.fallback.followUps, connectCTA: t.fallback.connectCTA };
   return {
-    a: "That's a great question! Our team can give you the most accurate answer.\n\nFor now, here are the topics I can help with:",
+    a: "I'm not sure I understood that — but I'm here to help! 😊\n\nHere are some things I can answer for you:",
     followUps: ["What is OOH advertising?", "Pricing / Quote", "Cities you cover", "Talk to our team"],
     connectCTA: true,
   };
