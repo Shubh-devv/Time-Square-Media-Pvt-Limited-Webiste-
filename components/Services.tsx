@@ -15,10 +15,10 @@ function getTheme(idx: number) {
   const light = LIGHT_INDICES.has(idx);
   return {
     light,
-    drawerBg:     light ? "#FFFFFF"               : "#090910",
-    headerBg:     light ? "#f4f7ff"               : "#0d0d1a",
-    headerBorder: light ? "#dde6f5"               : "rgba(255,255,255,0.07)",
-    titleColor:   light ? "#090910"               : "#f0f0f8",
+    drawerBg:     light ? "#FFFFFF"               : "#0B1628",
+    headerBg:     light ? "#f4f7ff"               : "#162338",
+    headerBorder: light ? "#dde6f5"               : "rgba(255,255,255,0.12)",
+    titleColor:   light ? "#0B1628"               : "#f0f0f8",
     tagline:      light ? "#2D78C8"               : "rgba(45,120,200,0.8)",
     bodyText:     light ? "#2a2a3c"               : "rgba(240,240,248,0.8)",
     labelColor:   light ? "#888898"               : "rgba(136,136,152,0.55)",
@@ -77,7 +77,7 @@ export default function Services({
           }}
         />
         {/* Single dark navy overlay */}
-        <div className="absolute inset-0" style={{ background: "rgba(8,12,35,0.76)" }} />
+        <div className="absolute inset-0" style={{ background: "rgba(11,22,40,0.70)" }} />
         <div className="shell relative z-10">
 
           {/* ── Section header ─────────────────────────────────────── */}

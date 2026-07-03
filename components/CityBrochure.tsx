@@ -128,7 +128,7 @@ export default function CityBrochure({ city }: { city: CityPage }) {
       <section className="relative overflow-hidden bg-ink pb-0 pt-32 md:pt-40">
         {/* Blurred background image */}
         <div aria-hidden className="absolute inset-0" style={{ backgroundImage: "url('/clients/campaign/Back%203.jpg')", backgroundSize: "cover", backgroundPosition: "center", filter: "blur(6px)", transform: "scale(1.08)" }} />
-        <div aria-hidden className="absolute inset-0" style={{ background: "rgba(8,12,35,0.74)" }} />
+        <div aria-hidden className="absolute inset-0" style={{ background: "rgba(11,22,40,0.68)" }} />
         <span
           aria-hidden
           className="pointer-events-none absolute right-4 top-8 font-display text-[22vw] leading-none opacity-[0.03] md:right-12"
@@ -467,7 +467,7 @@ export default function CityBrochure({ city }: { city: CityPage }) {
               >
                 <div
                   className="absolute inset-0"
-                  style={{ background: `linear-gradient(135deg, ${c.accent}dd 0%, ${c.accent}88 55%, #090910 100%)` }}
+                  style={{ background: `linear-gradient(135deg, ${c.accent}dd 0%, ${c.accent}88 55%, #0B1628 100%)` }}
                 />
                 <div
                   className="absolute inset-0 opacity-[0.08]"

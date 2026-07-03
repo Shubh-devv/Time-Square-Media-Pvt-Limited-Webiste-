@@ -32,7 +32,7 @@ export default function PageHero({
         }}
       />
       {/* Dark navy overlay */}
-      <div aria-hidden className="absolute inset-0" style={{ background: "rgba(8,12,35,0.80)" }} />
+      <div aria-hidden className="absolute inset-0" style={{ background: "rgba(11,22,40,0.72)" }} />
 
       {/* Blue ambient glows */}
       <div

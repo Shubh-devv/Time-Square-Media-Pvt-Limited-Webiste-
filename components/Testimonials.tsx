@@ -39,7 +39,7 @@ export default function Testimonials() {
         }}
       />
       {/* Light dark overlay — enough to read text, image still visible */}
-      <div className="absolute inset-0" style={{ background: "rgba(8,12,35,0.50)" }} />
+      <div className="absolute inset-0" style={{ background: "rgba(11,22,40,0.42)" }} />
       <div className="shell relative z-10">
         <Reveal>
           <p className="eyebrow mb-6 justify-center text-center">Client Voices</p>

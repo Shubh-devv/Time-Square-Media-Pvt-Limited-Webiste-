@@ -38,7 +38,7 @@ export default function BlogPage() {
 
       <section className="relative overflow-hidden border-t border-ink-line py-24 md:py-32">
         <div aria-hidden className="absolute inset-0" style={{ backgroundImage: "url('/clients/campaign/Back%201.jpg')", backgroundSize: "cover", backgroundPosition: "center", filter: "blur(6px)", transform: "scale(1.08)" }} />
-        <div aria-hidden className="absolute inset-0" style={{ background: "rgba(8,12,35,0.80)" }} />
+        <div aria-hidden className="absolute inset-0" style={{ background: "rgba(11,22,40,0.72)" }} />
         <div className="shell relative z-10">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {BLOG_POSTS.map((post) => {

@@ -802,7 +802,7 @@ export default function ChatBot() {
             position: "absolute", top: 0, right: 0,
             width: 18, height: 18, borderRadius: "50%",
             background: "#ef4444",
-            border: "2px solid #0F0F1A",
+            border: "2px solid #162338",
             display: "flex", alignItems: "center", justifyContent: "center",
             fontSize: 10, fontWeight: 700, color: "#fff",
             fontFamily: "var(--font-mono)",
@@ -831,7 +831,7 @@ export default function ChatBot() {
               flexDirection: "column",
               borderRadius: 20,
               border: "1px solid rgba(45,120,200,0.2)",
-              background: "#0F0F1A",
+              background: "#162338",
               overflow: "hidden",
               boxShadow: "0 28px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(45,120,200,0.1)",
             }}

@@ -12,7 +12,7 @@ const WORK_IMAGES: Record<string, string> = {
   "Siggnature":            "/clients/Siggnature Long.png",
   "Tea Valley":            "/clients/Tea Valley Long.png",
   "Pan Bahar":             "/clients/Pan Bahar Long.png",
-  "Paras Hospital":        "/clients/Paras.jpg",
+  "Paras Hospital":        "/clients/Paras Long.png",
 };
 
 export default function Work({ previewCount }: { previewCount?: number }) {

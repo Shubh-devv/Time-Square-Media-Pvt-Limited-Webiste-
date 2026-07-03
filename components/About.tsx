@@ -9,7 +9,7 @@ export default function About() {
     <section
       id="about"
       className="relative overflow-hidden border-t border-ink-line py-24 md:py-32"
-      style={{ background: "rgba(8,12,35,1)" }}
+      style={{ background: "rgba(11,22,40,0.94)" }}
     >
       {/* Background image — cover fills edge to edge, no side gaps */}
       <div
@@ -23,7 +23,7 @@ export default function About() {
         }}
       />
       {/* Overlay */}
-      <div className="absolute inset-0" style={{ background: "rgba(8,12,35,0.55)" }} />
+      <div className="absolute inset-0" style={{ background: "rgba(11,22,40,0.46)" }} />
       <div className="shell grid gap-14 md:grid-cols-12 relative z-10">
         <div className="md:col-span-5">
           <Reveal>

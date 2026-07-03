@@ -14,18 +14,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#090910",
-        "ink-soft": "#0F0F1A",
-        "ink-line": "rgba(255,255,255,0.07)",
+        ink: "#0B1628",
+        "ink-soft": "#162338",
+        "ink-line": "rgba(255,255,255,0.12)",
         paper: "#FFFFFF",
-        "paper-dim": "#B0B0C0",
+        "paper-dim": "#C4C5DA",
         blue: "#2D78C8",
         "blue-light": "#5BA3E8",
         "blue-dim": "#1B5AA0",
         amber: "#FFB02E",
         "amber-deep": "#E0901A",
         signal: "#FF3D5A",
-        slate: "#888898",
+        slate: "#9899B2",
         "slate-dim": "#50505E",
       },
       fontFamily: {

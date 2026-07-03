@@ -134,7 +134,7 @@ export default function Hero() {
         style={{
           zIndex: 0,
           background:
-            "linear-gradient(-45deg,#090910 0%,#0d1c30 25%,#162a45 50%,#0d1520 75%,#090910 100%)",
+            "linear-gradient(-45deg,#0B1628 0%,#112035 25%,#1A3050 50%,#0F1E34 75%,#0B1628 100%)",
           backgroundSize: "300% 300%",
           animation: "heroBg 16s ease infinite",
         }}
@@ -161,7 +161,7 @@ export default function Hero() {
         style={{
           zIndex: 2,
           background:
-            "linear-gradient(135deg,rgba(9,9,16,0.80) 0%,rgba(9,9,16,0.58) 55%,rgba(9,9,16,0.72) 100%)",
+            "linear-gradient(135deg,rgba(11,22,40,0.74) 0%,rgba(11,22,40,0.50) 55%,rgba(11,22,40,0.66) 100%)",
         }}
       />
 
@@ -372,7 +372,7 @@ export default function Hero() {
             <div
               className="rounded-2xl p-4"
               style={{
-                background: "rgba(9,9,16,0.72)",
+                background: "rgba(11,22,40,0.65)",
                 border: "1px solid rgba(45,120,200,0.20)",
                 backdropFilter: "blur(24px)",
               }}
