@@ -5,15 +5,15 @@ import Image from "next/image";
 import { WORK } from "@/lib/data";
 import Reveal from "./Reveal";
 
-const WORK_IMAGES = [
-  "/clients/Rudra Long.png",
-  "/clients/Digiway Long.png",
-  "/clients/Bluestone Long.png",
-  "/clients/nestle-long.jpeg",
-  "/clients/Siggnature.jpg",
-  "/clients/Tea Valley.jpg",
-  "/clients/Pan Bahar.jpg",
-];
+const WORK_IMAGES: Record<string, string> = {
+  "Rudra":                 "/clients/Rudra Long.png",
+  "Digiway Net Pvt. Ltd.": "/clients/Digiway Long.png",
+  "BlueStone":             "/clients/Bluestone Long.png",
+  "Siggnature":            "/clients/Siggnature Long.png",
+  "Tea Valley":            "/clients/Tea Valley Long.png",
+  "Pan Bahar":             "/clients/Pan Bahar Long.png",
+  "Paras Hospital":        "/clients/Paras.jpg",
+};
 
 export default function Work({ previewCount }: { previewCount?: number }) {
   const items = previewCount ? WORK.slice(0, previewCount) : WORK;
@@ -41,12 +41,12 @@ export default function Work({ previewCount }: { previewCount?: number }) {
             <Reveal key={w.name} delay={0.04 * i}>
               <article className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-2xl border border-ink-line bg-ink-soft transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_60px_rgba(45,120,200,0.22)]">
                 {/* Campaign photo */}
-                {WORK_IMAGES[i] && (
+                {WORK_IMAGES[w.name] && (
                   <Image
-                    src={WORK_IMAGES[i]}
+                    src={WORK_IMAGES[w.name]}
                     alt={w.name}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
                   />
                 )}

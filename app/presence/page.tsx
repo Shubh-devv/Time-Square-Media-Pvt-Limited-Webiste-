@@ -13,6 +13,7 @@ export default function PresencePage() {
   return (
     <main>
       <PageHero
+        image="/clients/campaign/Campaign%20%283%29.png"
         eyebrow="Our presence"
         title={
           <>

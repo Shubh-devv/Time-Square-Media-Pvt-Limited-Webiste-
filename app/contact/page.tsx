@@ -12,6 +12,7 @@ export default function ContactPage() {
   return (
     <main>
       <PageHero
+        image="/clients/campaign/Back%202.jpg"
         eyebrow="Contact us"
         title={
           <>

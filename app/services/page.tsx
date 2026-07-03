@@ -13,6 +13,7 @@ export default function ServicesPage() {
   return (
     <main>
       <PageHero
+        image="/clients/campaign/Back%201.jpg"
         eyebrow="What we offer"
         title={
           <>

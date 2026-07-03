@@ -13,6 +13,7 @@ export default function AboutPage() {
   return (
     <main>
       <PageHero
+        image="/clients/campaign/Campaign%20%281%29.png"
         eyebrow="About Time Square Media"
         title={
           <>

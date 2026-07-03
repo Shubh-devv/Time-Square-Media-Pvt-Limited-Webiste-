@@ -25,6 +25,7 @@ export default function BlogPage() {
   return (
     <main>
       <PageHero
+        image="/clients/campaign/Campaign%20%284%29.png"
         eyebrow="Insights & Strategy"
         title={
           <>

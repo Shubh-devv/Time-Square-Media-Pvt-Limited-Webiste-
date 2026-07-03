@@ -7,10 +7,12 @@ export default function PageHero({
   eyebrow,
   title,
   subtitle,
+  image = "/clients/campaign/Back%204.jpg",
 }: {
   eyebrow: string;
   title: ReactNode;
   subtitle?: string;
+  image?: string;
 }) {
   const reduce = useReducedMotion();
 
@@ -21,11 +23,12 @@ export default function PageHero({
         aria-hidden
         className="absolute inset-0"
         style={{
-          backgroundImage: "url('/clients/campaign/Back%204.jpg')",
+          backgroundImage: `url('${image}')`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
-          filter: "blur(6px)",
-          transform: "scale(1.08)",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          filter: "blur(7px)",
+          transform: "scale(1.1)",
         }}
       />
       {/* Dark navy overlay */}

@@ -13,6 +13,7 @@ export default function WorkPage() {
   return (
     <main>
       <PageHero
+        image="/clients/campaign/Campaign%20%282%29.png"
         eyebrow="Portfolio"
         title={
           <>
