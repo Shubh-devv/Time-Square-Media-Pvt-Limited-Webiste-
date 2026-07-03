@@ -15,6 +15,11 @@ export const metadata: Metadata = {
     template: "%s — Time Square Media",
     default: "Time Square Media — OOH + Digital + Web Marketing Agency",
   },
+  icons: {
+    icon: "/times_favicon.png",
+    shortcut: "/times_favicon.png",
+    apple: "/times_favicon.png",
+  },
   description:
     "Time Square Media is a full-spectrum advertising agency: out-of-home billboards, digital marketing, web solutions, BTL activations and retail consultancy across six Indian cities.",
   keywords: [
