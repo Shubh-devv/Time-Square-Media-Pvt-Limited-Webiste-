@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { COMPANY, CITIES, NAV } from "@/lib/data";
-import ClassicSite from "./ClassicSite";
 
 export default function Footer() {
   return (
@@ -117,16 +116,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-blue/15 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-3 border-t border-blue/15 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-xs" style={{ color: "#5a7a9a" }}>
             © {new Date().getFullYear()} {COMPANY.legalName}. All rights reserved.
           </p>
-          <div className="flex flex-wrap items-center gap-5">
-            <p className="font-mono text-xs" style={{ color: "#5a7a9a" }}>
-              Out-of-Home · Digital · Web · BTL · Retail
-            </p>
-            <ClassicSite />
-          </div>
+          <p className="font-mono text-xs" style={{ color: "#5a7a9a" }}>
+            Out-of-Home · Digital · Web · BTL · Retail
+          </p>
         </div>
       </div>
     </footer>
