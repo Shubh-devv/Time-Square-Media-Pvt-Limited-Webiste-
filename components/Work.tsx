@@ -7,8 +7,8 @@ import Reveal from "./Reveal";
 
 const WORK_IMAGES = [
   "/clients/Rudra Long.png",
-  "/clients/Digiway Long.jpeg",
-  "/clients/Bluestone long.jpeg",
+  "/clients/Digiway Long.png",
+  "/clients/Bluestone Long.png",
   "/clients/nestle-long.jpeg",
   "/clients/Siggnature.jpg",
   "/clients/Tea Valley.jpg",

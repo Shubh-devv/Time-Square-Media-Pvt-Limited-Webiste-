@@ -13,7 +13,7 @@ const TESTIMONIALS = [
       "Their end-to-end approach — from hoarding selection to digital retargeting — gave us city-wide visibility we couldn't achieve individually. Truly one roof, every medium.",
     name: "Priya Mishra",
     role: "Brand Manager",
-    company: "HDFC Bank (UP West)",
+    company: "Tanishq",
   },
   {
     quote:
@@ -26,15 +26,25 @@ const TESTIMONIALS = [
 
 export default function Testimonials() {
   return (
-    <section className="border-t border-gray-100 bg-gray-50 py-24 md:py-32">
-      <div className="shell">
+    <section className="relative overflow-hidden border-t border-ink-line pt-36 pb-24 md:pt-44 md:pb-32">
+      {/* Background image — subtle blur so image reads clearly */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "url('/clients/campaign/Back%202.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center top",
+          filter: "blur(3px)",
+          transform: "scale(1.06)",
+        }}
+      />
+      {/* Light dark overlay — enough to read text, image still visible */}
+      <div className="absolute inset-0" style={{ background: "rgba(8,12,35,0.50)" }} />
+      <div className="shell relative z-10">
         <Reveal>
           <p className="eyebrow mb-6 justify-center text-center">Client Voices</p>
-          <h2
-            className="display mx-auto max-w-2xl text-center text-[clamp(2rem,5vw,3.5rem)]"
-            style={{ color: "#090910" }}
-          >
-            What our <span style={{ color: "#2D78C8" }}>clients</span> say
+          <h2 className="display mx-auto max-w-2xl text-center text-[clamp(2rem,5vw,3.5rem)] text-paper">
+            What our <span className="text-blue">clients</span> say
           </h2>
         </Reveal>
 

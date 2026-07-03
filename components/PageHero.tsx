@@ -16,6 +16,21 @@ export default function PageHero({
 
   return (
     <section className="relative overflow-hidden border-b border-ink-line pb-20 pt-36 md:pb-28 md:pt-48">
+      {/* Blurred background image */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "url('/clients/campaign/Back%204.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          filter: "blur(6px)",
+          transform: "scale(1.08)",
+        }}
+      />
+      {/* Dark navy overlay */}
+      <div aria-hidden className="absolute inset-0" style={{ background: "rgba(8,12,35,0.78)" }} />
+
       {/* Blue ambient glows — fixed opacity to standard values */}
       <div
         aria-hidden

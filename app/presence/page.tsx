@@ -26,8 +26,10 @@ export default function PresencePage() {
       <Presence />
 
       {/* ── CTA ── */}
-      <section className="border-t border-ink-line py-24 text-center md:py-32">
-        <div className="shell">
+      <section className="relative overflow-hidden border-t border-ink-line py-24 text-center md:py-32">
+        <div aria-hidden className="absolute inset-0" style={{ backgroundImage: "url('/clients/campaign/Back%202.jpg')", backgroundSize: "cover", backgroundPosition: "center", filter: "blur(6px)", transform: "scale(1.08)" }} />
+        <div aria-hidden className="absolute inset-0" style={{ background: "rgba(8,12,35,0.76)" }} />
+        <div className="shell relative z-10">
           <p className="eyebrow mb-6 justify-center">Your city. Your campaign.</p>
           <h2 className="display mx-auto max-w-3xl text-[clamp(2.2rem,6vw,4.5rem)]">
             Want to own<br />

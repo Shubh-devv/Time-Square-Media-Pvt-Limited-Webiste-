@@ -223,22 +223,24 @@ export const WORK = [
   { name: "Siggnature",            category: "Outdoor Hoarding",            city: "" },
   { name: "Tea Valley",            category: "Branding",                    city: "" },
   { name: "Pan Bahar",             category: "Branding",                    city: "" },
-  { name: "HDFC Bank ATM",         category: "Branding",                    city: "" },
+  { name: "Paras Hospital",         category: "Branding",                    city: "" },
 ];
 
 export const CLIENTS = [
-  "Nestlé",
-  "HDFC Bank",
-  "Vaseline",
   "BlueStone",
   "Tea Valley",
   "Pan Bahar",
   "Digiway",
-  "Campus",
-  "NINE",
   "Baljiwan Ghutti",
   "Siggnature",
   "Rudra",
+  "Paras Hospital",
+  "Tanishq",
+  "Maruti Suzuki",
+  "Aakash",
+  "Allen",
+  "Kashi",
+  "PNG",
 ];
 
 export const TICKER_TERMS = [

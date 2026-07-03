@@ -481,7 +481,7 @@ const FAQ: Array<{ key: string; q: RegExp; a: string; followUps?: string[]; conn
   {
     key: "about",
     q: /year|since|found|establish|experience|history|old|about|कितने\s*साल|पुराना|company|agency|who\s*are/i,
-    a: "About Time Square Media:\n• Founded in 2012 — 12+ years in advertising\n• 6 cities across India\n• 100+ brands served\n• 500+ campaigns executed\n• In-house fabrication unit in Lucknow\n\nBrands we've worked with:\n• Nestlé, HDFC Bank, Vaseline\n• BlueStone, Tea Valley, Pan Bahar\n• Campus, Siggnature, Rudra & more",
+    a: "About Time Square Media:\n• Founded in 2012 — 12+ years in advertising\n• 6 cities across India\n• 100+ brands served\n• 500+ campaigns executed\n• In-house fabrication unit in Lucknow\n\nBrands we've worked with:\n• Paras Hospital, Tanishq, Maruti Suzuki\n• BlueStone, Tea Valley, Pan Bahar\n• Aakash, Allen, Kashi & more",
     followUps: ["What is OOH advertising?", "Cities you cover", "Talk to our team"],
   },
 

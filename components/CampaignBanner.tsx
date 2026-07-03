@@ -5,16 +5,13 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 const CAMPAIGNS = [
-  "/clients/campaign/WhatsApp Image 2026-05-25 at 15.56.17 (1).jpeg",
-  "/clients/campaign/WhatsApp Image 2026-05-25 at 15.56.17.jpeg",
-  "/clients/campaign/WhatsApp Image 2026-05-25 at 15.56.18.jpeg",
-  "/clients/campaign/WhatsApp Image 2026-05-25 at 15.56.19 (2).jpeg",
-  "/clients/campaign/WhatsApp Image 2026-05-25 at 15.56.20.jpeg",
-  "/clients/campaign/WhatsApp Image 2026-06-16 at 14.50.00.jpeg",
-  "/clients/campaign/WhatsApp Image 2026-06-16 at 14.50.04.jpeg",
-  "/clients/campaign/WhatsApp Image 2026-06-16 at 14.50.05.jpeg",
-  "/clients/campaign/WhatsApp-Image-2026-02-24-at-17.48.48-1.jpeg",
-  "/clients/campaign/WhatsApp-Image-2026-02-24-at-17.48.48-2.jpeg",
+  "/clients/campaign/Campaign (1).png",
+  "/clients/campaign/Campaign (2).png",
+  "/clients/campaign/Campaign (3).png",
+  "/clients/campaign/Campaign (4).png",
+  "/clients/campaign/Campaign (5).png",
+  "/clients/campaign/Campaign (6).png",
+  "/clients/campaign/Campaign (7).png",
 ];
 
 /* duplicate for seamless infinite loop */

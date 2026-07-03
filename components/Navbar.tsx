@@ -203,19 +203,19 @@ export default function Navbar() {
   return (
     <>
       {/* ── Transparent full-width navbar — glassmorphism chips ─── */}
-      <header className="fixed left-0 right-0 top-0 z-50 w-full">
+      <header className="fixed left-0 right-0 top-0 z-[60] w-full">
         <div className="flex h-[72px] items-center gap-2.5 px-5 md:px-10 lg:px-16">
 
           {/* ── Logo chip — bright frosted white glass ───────────────── */}
           <div
             style={{
-              background: "rgba(255,255,255,0.93)",
+              background: "#ffffff",
               border: "1px solid rgba(45,120,200,0.3)",
               boxShadow: "0 4px 32px rgba(45,120,200,0.25), 0 1px 0 rgba(255,255,255,1) inset",
               backdropFilter: "blur(28px)",
               WebkitBackdropFilter: "blur(28px)",
             }}
-            className={`flex h-16 shrink-0 items-center rounded-2xl px-5 transition-all duration-300 hover:shadow-[0_6px_40px_rgba(45,120,200,0.4)] ${
+            className={`flex h-16 shrink-0 items-center rounded-2xl px-8 mt-4 transition-all duration-300 hover:shadow-[0_6px_40px_rgba(45,120,200,0.4)] ${
               open ? "pointer-events-none opacity-0" : "opacity-100"
             }`}
           >

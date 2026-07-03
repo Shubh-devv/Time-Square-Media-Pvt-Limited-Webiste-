@@ -61,8 +61,24 @@ export default function Services({
 
   return (
     <>
-      <section id="services" className="border-t border-ink-line py-24 md:py-32">
-        <div className="shell">
+      <section
+        id="services"
+        className="relative overflow-hidden border-t border-ink-line py-24 md:py-32"
+      >
+        {/* Blurred background image */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/clients/campaign/Back%201.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            filter: "blur(6px)",
+            transform: "scale(1.08)",
+          }}
+        />
+        {/* Single dark navy overlay */}
+        <div className="absolute inset-0" style={{ background: "rgba(8,12,35,0.76)" }} />
+        <div className="shell relative z-10">
 
           {/* ── Section header ─────────────────────────────────────── */}
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">

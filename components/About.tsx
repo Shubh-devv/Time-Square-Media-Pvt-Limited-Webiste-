@@ -6,8 +6,25 @@ import CountUp from "./CountUp";
 
 export default function About() {
   return (
-    <section id="about" className="relative border-t border-ink-line py-24 md:py-32">
-      <div className="shell grid gap-14 md:grid-cols-12">
+    <section
+      id="about"
+      className="relative overflow-hidden border-t border-ink-line py-24 md:py-32"
+      style={{ background: "rgba(8,12,35,1)" }}
+    >
+      {/* Background image — cover fills edge to edge, no side gaps */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "url('/clients/campaign/Back%203.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          filter: "blur(4px)",
+          opacity: 0.65,
+        }}
+      />
+      {/* Overlay */}
+      <div className="absolute inset-0" style={{ background: "rgba(8,12,35,0.55)" }} />
+      <div className="shell grid gap-14 md:grid-cols-12 relative z-10">
         <div className="md:col-span-5">
           <Reveal>
             <p className="eyebrow mb-6">Who we are</p>
@@ -48,3 +65,4 @@ export default function About() {
     </section>
   );
 }
+

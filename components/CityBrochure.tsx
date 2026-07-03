@@ -126,6 +126,9 @@ export default function CityBrochure({ city }: { city: CityPage }) {
           1 — HERO
       ════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-ink pb-0 pt-32 md:pt-40">
+        {/* Blurred background image */}
+        <div aria-hidden className="absolute inset-0" style={{ backgroundImage: "url('/clients/campaign/Back%203.jpg')", backgroundSize: "cover", backgroundPosition: "center", filter: "blur(6px)", transform: "scale(1.08)" }} />
+        <div aria-hidden className="absolute inset-0" style={{ background: "rgba(8,12,35,0.74)" }} />
         <span
           aria-hidden
           className="pointer-events-none absolute right-4 top-8 font-display text-[22vw] leading-none opacity-[0.03] md:right-12"
