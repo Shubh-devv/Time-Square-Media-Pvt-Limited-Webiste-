@@ -49,16 +49,16 @@ export default function ClassicSite() {
         {visible && (
           <motion.button
             onClick={trigger}
-            initial={{ x: 120, opacity: 0 }}
+            initial={{ x: -120, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 120, opacity: 0 }}
+            exit={{ x: -120, opacity: 0 }}
             transition={{ type: "spring", stiffness: 220, damping: 22, delay: 0 }}
-            whileHover={{ scale: 1.06, x: -4 }}
+            whileHover={{ scale: 1.06, x: 4 }}
             whileTap={{ scale: 0.96 }}
             aria-label="Visit Classic Website"
-            className="fixed right-6 z-50 flex items-center gap-2.5 rounded-xl px-4 py-2.5"
+            className="fixed left-6 z-50 flex items-center gap-2.5 rounded-xl px-4 py-2.5"
             style={{
-              bottom: "106px",          /* sits above the WA button (56+24+gap) */
+              bottom: "32px",
               background: "rgba(11,22,40,0.92)",
               border: "1px solid rgba(45,120,200,0.45)",
               backdropFilter: "blur(12px)",
