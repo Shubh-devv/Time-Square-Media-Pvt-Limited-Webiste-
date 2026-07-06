@@ -4,34 +4,17 @@ import { COMPANY, CITIES, NAV } from "@/lib/data";
 
 export default function Footer() {
   return (
-    <footer
-      className="pb-16 md:pb-20"
-      style={{ background: "linear-gradient(135deg, #f0f7ff 0%, #e3effc 40%, #f8fbff 100%)" }}
-    >
+    <footer style={{ background: "#f4f8ff" }}>
 
-      {/* Digital marketing image banner */}
-      <div className="relative mb-14 h-48 w-full overflow-hidden md:h-64">
-        <div
-          className="absolute inset-0 flex flex-col items-center justify-center gap-3"
-          style={{ background: "linear-gradient(135deg, #0d1e3a 0%, #1a3a6e 50%, #2D78C8 100%)" }}
-        >
-          <p className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-blue-light">
-            Full-Spectrum Advertising
-          </p>
-          <p className="font-display text-4xl uppercase tracking-widest text-white md:text-6xl">
-            OOH · Digital · BTL
-          </p>
-          <p className="font-mono text-xs text-white/70">
-            Drop your digital marketing image at <span className="text-blue-light">public/digital-marketing.jpg</span> to replace this
-          </p>
-        </div>
-      </div>
+      {/* Top accent band */}
+      <div style={{ background: "linear-gradient(90deg, #0d1e3a 0%, #1a3a6e 55%, #2D78C8 100%)", height: 4 }} />
 
-      <div className="shell">
+      {/* Main content */}
+      <div className="shell py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-12">
 
-          {/* Brand */}
-          <div className="md:col-span-5">
+          {/* Brand column */}
+          <div className="md:col-span-4">
             <Link href="/">
               <Image
                 src="/Hero Video/Logo.png"
@@ -41,19 +24,18 @@ export default function Footer() {
                 className="h-12 w-auto md:h-14"
               />
             </Link>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed" style={{ color: "#3a5a7a" }}>
-              {COMPANY.tagline} A full-spectrum advertising agency delivering OOH, digital,
-              BTL and retail solutions across India — under one roof.
+            <p className="mt-5 max-w-xs text-sm leading-relaxed" style={{ color: "#1a2e45", fontWeight: 400 }}>
+              A full-spectrum advertising agency delivering OOH, digital, BTL and retail solutions across India — under one roof.
             </p>
-            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2.5">
               {COMPANY.socials.map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-xs uppercase tracking-[0.14em] transition-colors hover:text-blue"
-                  style={{ color: "#5a7a9a" }}
+                  className="text-xs font-semibold transition-colors hover:text-blue"
+                  style={{ color: "#2D78C8" }}
                 >
                   {s.label}
                 </a>
@@ -62,20 +44,28 @@ export default function Footer() {
           </div>
 
           {/* Navigation */}
-          <div className="md:col-span-3">
-            <p className="font-mono text-[0.68rem] uppercase tracking-[0.18em]" style={{ color: "#2D78C8" }}>
-              Explore
+          <div className="md:col-span-2">
+            <p className="mb-4 text-xs font-bold uppercase tracking-widest" style={{ color: "#0d1e3a" }}>
+              Navigate
             </p>
-            <ul className="mt-4 space-y-3">
+            <ul className="space-y-3">
               {NAV.map((n) => (
                 <li key={n.href}>
-                  <Link href={n.href} className="text-sm transition-colors hover:text-blue" style={{ color: "#1a3a5a" }}>
+                  <Link
+                    href={n.href}
+                    className="text-sm font-medium transition-colors hover:text-blue"
+                    style={{ color: "#1a2e45" }}
+                  >
                     {n.label}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/contact" className="text-sm transition-colors hover:text-blue" style={{ color: "#1a3a5a" }}>
+                <Link
+                  href="/contact"
+                  className="text-sm font-medium transition-colors hover:text-blue"
+                  style={{ color: "#1a2e45" }}
+                >
                   Contact
                 </Link>
               </li>
@@ -83,24 +73,24 @@ export default function Footer() {
           </div>
 
           {/* All Offices */}
-          <div className="md:col-span-4">
-            <p className="font-mono text-[0.68rem] uppercase tracking-[0.18em]" style={{ color: "#2D78C8" }}>
+          <div className="md:col-span-6">
+            <p className="mb-4 text-xs font-bold uppercase tracking-widest" style={{ color: "#0d1e3a" }}>
               Our Offices
             </p>
-            <div className="mt-4 grid grid-cols-2 gap-x-5 gap-y-5">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3">
               {CITIES.map((c) => (
                 <div key={c.city}>
-                  <p className="font-mono text-[0.6rem] uppercase tracking-[0.14em]" style={{ color: "#2D78C8" }}>
+                  <p className="text-sm font-bold" style={{ color: "#2D78C8" }}>
                     {c.city}
                   </p>
-                  <p className="mt-1 text-xs leading-relaxed" style={{ color: "#3a5a7a" }}>
+                  <p className="mt-1.5 text-xs leading-relaxed" style={{ color: "#1a2e45" }}>
                     {c.address}
                   </p>
                   {c.phone && (
                     <a
                       href={`tel:${c.phone}`}
-                      className="mt-0.5 block font-mono text-[0.65rem] transition-colors hover:text-blue"
-                      style={{ color: "#5a7a9a" }}
+                      className="mt-1 block text-xs font-medium transition-colors hover:text-blue"
+                      style={{ color: "#2D78C8" }}
                     >
                       {c.phone}
                     </a>
@@ -108,23 +98,28 @@ export default function Footer() {
                 </div>
               ))}
             </div>
-            <div className="mt-5 space-y-1">
+            <div className="mt-6 pt-5" style={{ borderTop: "1px solid rgba(45,120,200,0.15)" }}>
               <a
                 href={`mailto:${COMPANY.email}`}
-                className="block font-mono text-xs transition-colors hover:text-blue"
-                style={{ color: "#1a3a5a" }}
+                className="text-sm font-semibold transition-colors hover:text-blue"
+                style={{ color: "#1a2e45" }}
               >
                 {COMPANY.email}
               </a>
             </div>
           </div>
+
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-blue/15 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-xs" style={{ color: "#5a7a9a" }}>
+        {/* Bottom bar */}
+        <div
+          className="mt-14 flex flex-col gap-2 pt-6 sm:flex-row sm:items-center sm:justify-between"
+          style={{ borderTop: "1px solid rgba(45,120,200,0.18)" }}
+        >
+          <p className="text-xs font-medium" style={{ color: "#1a2e45" }}>
             © {new Date().getFullYear()} {COMPANY.legalName}. All rights reserved.
           </p>
-          <p className="font-mono text-xs" style={{ color: "#5a7a9a" }}>
+          <p className="text-xs font-medium" style={{ color: "#1a2e45" }}>
             Out-of-Home · Digital · Web · BTL · Retail
           </p>
         </div>
