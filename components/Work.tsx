@@ -8,7 +8,7 @@ import Reveal from "./Reveal";
 const WORK_IMAGES: Record<string, string> = {
   "BlueStone":             "/clients/Bluestone Long.png",
   "Siggnature":            "/clients/Siggnature Long.png",
-  "Loreal":                "/clients/Loreal Long.png",
+  "Dove":                  "/clients/Loreal Long.png",
   "Rudra":                 "/clients/Rudra Long.png",
   "Digiway Net Pvt. Ltd.": "/clients/Digiway Long.png",
   "Tea Valley":            "/clients/Tea Valley Long.png",
