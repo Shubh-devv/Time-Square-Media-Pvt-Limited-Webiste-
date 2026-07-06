@@ -65,9 +65,9 @@ const ALL_NAV = [...NAV, { label: "Contact", href: "/contact" }];
 
 /* ── Presence dropdown cities ────────────────────────────────── */
 const PRESENCE_CITIES = [
+  { label: "Delhi",    href: "/presence/delhi",   code: "DEL", accent: "#C0392B" },
   { label: "Lucknow",  href: "/presence/lucknow", code: "LKO", accent: "#2D78C8" },
   { label: "Kanpur",   href: "/presence/kanpur",  code: "KNP", accent: "#E67E22" },
-  { label: "Delhi",    href: "/presence/delhi",   code: "DEL", accent: "#C0392B" },
   { label: "Bhopal",   href: "/presence/bhopal",  code: "BHO", accent: "#16A085" },
   { label: "Agra",     href: "/presence/agra",    code: "AGR", accent: "#8E44AD" },
 ];
