@@ -6,10 +6,11 @@ import { WORK } from "@/lib/data";
 import Reveal from "./Reveal";
 
 const WORK_IMAGES: Record<string, string> = {
-  "Rudra":                 "/clients/Rudra Long.png",
-  "Digiway Net Pvt. Ltd.": "/clients/Digiway Long.png",
   "BlueStone":             "/clients/Bluestone Long.png",
   "Siggnature":            "/clients/Siggnature Long.png",
+  "Loreal":                "/clients/Loreal.jpg",
+  "Rudra":                 "/clients/Rudra Long.png",
+  "Digiway Net Pvt. Ltd.": "/clients/Digiway Long.png",
   "Tea Valley":            "/clients/Tea Valley Long.png",
   "Pan Bahar":             "/clients/Pan Bahar Long.png",
   "Paras Hospital":        "/clients/Paras Long.png",

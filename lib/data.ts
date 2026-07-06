@@ -217,13 +217,14 @@ export const CITIES = [
 ];
 
 export const WORK = [
-  { name: "Rudra",                 category: "Outdoor Hoarding",            city: "Kanpur" },
-  { name: "Digiway Net Pvt. Ltd.", category: "Branding · Outdoor Hoarding", city: "" },
   { name: "BlueStone",             category: "Outdoor Hoarding",            city: "" },
   { name: "Siggnature",            category: "Outdoor Hoarding",            city: "" },
+  { name: "Loreal",                category: "Branding",                    city: "" },
+  { name: "Rudra",                 category: "Outdoor Hoarding",            city: "Kanpur" },
+  { name: "Digiway Net Pvt. Ltd.", category: "Branding · Outdoor Hoarding", city: "" },
   { name: "Tea Valley",            category: "Branding",                    city: "" },
   { name: "Pan Bahar",             category: "Branding",                    city: "" },
-  { name: "Paras Hospital",         category: "Branding",                    city: "" },
+  { name: "Paras Hospital",        category: "Branding",                    city: "" },
 ];
 
 export const CLIENTS = [
