@@ -30,7 +30,6 @@ export default function Hero() {
     if (vidRef.current) vidRef.current.muted = true;
   }, []);
 
-  /* Water ripple on headline words */
   useEffect(() => {
     const el = heroRef.current;
     if (!el || reduce) return;
@@ -40,8 +39,8 @@ export default function Hero() {
         const dx   = e.clientX - (r.left + r.width  / 2);
         const dy   = e.clientY - (r.top  + r.height / 2);
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 200) {
-          const s = ((200 - dist) / 200) * 28;
+        if (dist < 180) {
+          const s = ((180 - dist) / 180) * 26;
           const a = Math.atan2(dy, dx);
           word.style.transform = `translate(${(-Math.cos(a) * s).toFixed(1)}px,${(-Math.sin(a) * s).toFixed(1)}px)`;
         } else {
@@ -62,18 +61,18 @@ export default function Hero() {
 
   const container = {
     hidden: {},
-    show: { transition: { staggerChildren: 0.07, delayChildren: 0.18 } },
+    show: { transition: { staggerChildren: 0.065, delayChildren: 0.2 } },
   };
   const wv = {
     hidden: { y: "110%" },
-    show:   { y: "0%", transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] } },
+    show:   { y: "0%", transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] } },
   };
 
   const Word = ({ w, accent }: { w: string; accent?: boolean }) => (
     <span
       data-word
       className="inline-block"
-      style={{ transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1)", willChange: "transform" }}
+      style={{ transition: "transform 0.42s cubic-bezier(0.22,1,0.36,1)", willChange: "transform" }}
     >
       <span className="inline-block overflow-hidden">
         <motion.span
@@ -90,7 +89,7 @@ export default function Hero() {
     <section
       ref={heroRef}
       className="relative flex flex-col overflow-hidden"
-      style={{ height: "100svh", minHeight: "640px" }}
+      style={{ height: "100svh", minHeight: "620px" }}
     >
       {/* Base gradient */}
       <div
@@ -112,7 +111,7 @@ export default function Hero() {
         className="absolute inset-0 h-full w-full object-cover"
         style={{ opacity: 0.52, zIndex: 1 }}
       >
-        <source src="/videos/hero-bg.mp4"  type="video/mp4"  />
+        <source src="/videos/hero-bg.mp4"  type="video/mp4" />
         <source src="/videos/hero-bg.webm" type="video/webm" />
       </video>
 
@@ -123,11 +122,11 @@ export default function Hero() {
         style={{
           zIndex: 2,
           background:
-            "linear-gradient(135deg,rgba(11,22,40,0.78) 0%,rgba(11,22,40,0.55) 55%,rgba(11,22,40,0.70) 100%)",
+            "linear-gradient(135deg,rgba(11,22,40,0.76) 0%,rgba(11,22,40,0.52) 55%,rgba(11,22,40,0.68) 100%)",
         }}
       />
 
-      {/* Subtle dot grid */}
+      {/* Dot grid */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -141,85 +140,86 @@ export default function Hero() {
       />
 
       {/* Navbar spacer */}
-      <div aria-hidden className="flex-shrink-0" style={{ height: "84px" }} />
+      <div aria-hidden className="flex-shrink-0" style={{ height: "80px" }} />
 
-      {/* ── Main content — edge-to-edge ── */}
+      {/* ── Main content ── */}
       <div
-        className="relative flex flex-1 flex-col justify-center px-6 md:px-12 lg:px-16 xl:px-20"
+        className="relative flex flex-1 items-center px-6 md:px-12 lg:px-16 xl:px-20"
         style={{ zIndex: 10 }}
       >
+        <div className="grid w-full items-center gap-8 lg:grid-cols-[1fr_300px] xl:grid-cols-[1fr_320px] xl:gap-12">
 
-        {/* Eyebrow */}
-        <motion.p
-          initial={reduce ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
-          className="eyebrow mb-5"
-        >
-          Bigger · Bolder · Braver · Est. 2012 · Pan-India
-        </motion.p>
-
-        {/* MASSIVE headline — fills width */}
-        <div className="relative w-fit">
-          <span aria-hidden className="absolute -left-5 -top-4 h-6 w-6 border-l-[2px] border-t-[2px] border-blue/50" />
-          <span aria-hidden className="absolute -right-5 -top-4 h-6 w-6 border-r-[2px] border-t-[2px] border-blue/50" />
-          <span aria-hidden className="absolute -bottom-2 -left-5 h-6 w-6 border-b-[2px] border-l-[2px] border-blue/50" />
-          <span aria-hidden className="absolute -bottom-2 -right-5 h-6 w-6 border-b-[2px] border-r-[2px] border-blue/50" />
-
-          <motion.h1
-            variants={reduce ? undefined : container}
-            initial={reduce ? false : "hidden"}
-            animate="show"
-            className="display"
-            style={{ fontSize: "clamp(3.8rem, 10vw, 12rem)", lineHeight: 0.9 }}
-          >
-            <span className="block">
-              <span className="inline-flex flex-wrap gap-x-[0.2em]">
-                <Word w="OWN" /><Word w="THE" /><Word w="STREET." accent />
-              </span>
-            </span>
-            <span className="block mt-1">
-              <span className="inline-flex flex-wrap gap-x-[0.2em]">
-                <Word w="OWN" /><Word w="THE" /><Word w="SCROLL." accent />
-              </span>
-            </span>
-          </motion.h1>
-        </div>
-
-        {/* Two-column row: description + CTAs | service panel */}
-        <div className="mt-8 grid w-full items-start gap-8 lg:grid-cols-[1fr_300px] xl:grid-cols-[1fr_330px]">
-
-          {/* Left: sub-copy + CTAs + stats */}
+          {/* ── LEFT: headline + copy + CTAs + stats ── */}
           <div>
+
+            {/* Eyebrow */}
+            <motion.p
+              initial={reduce ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
+              className="eyebrow mb-4"
+            >
+              Bigger · Bolder · Braver · Est. 2012 · Pan-India
+            </motion.p>
+
+            {/* Headline */}
+            <div className="relative w-fit">
+              <span aria-hidden className="absolute -left-4 -top-3 h-5 w-5 border-l-[2px] border-t-[2px] border-blue/45" />
+              <span aria-hidden className="absolute -right-4 -top-3 h-5 w-5 border-r-[2px] border-t-[2px] border-blue/45" />
+              <span aria-hidden className="absolute -bottom-1 -left-4 h-5 w-5 border-b-[2px] border-l-[2px] border-blue/45" />
+              <span aria-hidden className="absolute -bottom-1 -right-4 h-5 w-5 border-b-[2px] border-r-[2px] border-blue/45" />
+
+              <motion.h1
+                variants={reduce ? undefined : container}
+                initial={reduce ? false : "hidden"}
+                animate="show"
+                className="display"
+                style={{ fontSize: "clamp(2.6rem, 6vw, 7rem)", lineHeight: 0.91 }}
+              >
+                <span className="block">
+                  <span className="inline-flex flex-wrap gap-x-[0.22em]">
+                    <Word w="OWN" /><Word w="THE" /><Word w="STREET." accent />
+                  </span>
+                </span>
+                <span className="block mt-1">
+                  <span className="inline-flex flex-wrap gap-x-[0.22em]">
+                    <Word w="OWN" /><Word w="THE" /><Word w="SCROLL." accent />
+                  </span>
+                </span>
+              </motion.h1>
+            </div>
+
+            {/* Description */}
             <motion.p
               initial={reduce ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.85 }}
-              className="max-w-2xl text-base leading-[1.8] text-paper/80 md:text-lg"
+              transition={{ delay: 0.82 }}
+              className="mt-5 max-w-xl text-[0.95rem] leading-[1.78] text-paper/78 md:text-base"
             >
-              12 years. 6 cities. We put your brand on hoardings thousands drive past every single day — and follow them home with digital campaigns that actually convert.
+              12 years. 6 cities. We put your brand on hoardings thousands drive past every single day — and follow them home with digital campaigns that actually convert. One team, everything in-house.
             </motion.p>
 
+            {/* CTA row */}
             <motion.div
               initial={reduce ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.98 }}
+              transition={{ delay: 0.96 }}
               className="mt-6 flex flex-wrap items-center gap-3"
             >
               <Link
                 href="/work"
-                className="rounded-[2px] bg-blue px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-paper transition-all hover:bg-blue-light"
+                className="rounded-[2px] bg-blue px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.16em] text-paper transition-all hover:bg-blue-light"
               >
                 See our work
               </Link>
               <Link
                 href="/contact"
-                className="rounded-[2px] border border-blue/50 px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-blue transition-all hover:border-blue hover:bg-blue hover:text-paper"
+                className="rounded-[2px] border border-blue/50 px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.16em] text-blue transition-all hover:border-blue hover:bg-blue hover:text-paper"
               >
                 Free consultation
               </Link>
               <div className="flex items-center gap-1.5 font-mono text-xs text-slate">
-                <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9a19.79 19.79 0 01-3.07-8.72A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z" />
                 </svg>
                 <a href="tel:+919506017729" className="transition-colors hover:text-blue">+91 95060 17729</a>
@@ -233,32 +233,33 @@ export default function Hero() {
               initial={reduce ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.1 }}
-              className="mt-8 flex flex-wrap items-center gap-6 border-t border-ink-line pt-6"
+              className="mt-6 flex flex-wrap items-center gap-5 border-t border-ink-line pt-5"
             >
               {STATS.map((s) => (
-                <div key={s.l} className="flex items-baseline gap-2">
-                  <span className="font-display text-[1.8rem] leading-none text-blue">{s.v}</span>
-                  <span className="font-mono text-[0.56rem] uppercase tracking-[0.14em] text-slate">{s.l}</span>
+                <div key={s.l} className="flex items-baseline gap-1.5">
+                  <span className="font-display text-[1.65rem] leading-none text-blue">{s.v}</span>
+                  <span className="font-mono text-[0.54rem] uppercase tracking-[0.14em] text-slate">{s.l}</span>
                 </div>
               ))}
             </motion.div>
           </div>
 
-          {/* Right: compact service dashboard */}
+          {/* ── RIGHT: service panel ── */}
           <motion.div
-            initial={reduce ? false : { opacity: 0, x: 28 }}
+            initial={reduce ? false : { opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.0, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: 0.95, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
             className="hidden lg:block"
           >
             <div
               className="rounded-2xl p-4"
               style={{
-                background: "rgba(11,22,40,0.68)",
-                border: "1px solid rgba(45,120,200,0.22)",
+                background: "rgba(11,22,40,0.65)",
+                border: "1px solid rgba(45,120,200,0.20)",
                 backdropFilter: "blur(24px)",
               }}
             >
+              {/* Header */}
               <div className="mb-3 flex items-center justify-between border-b border-ink-line pb-3">
                 <div className="flex items-center gap-2">
                   <span className="relative flex h-2 w-2">
@@ -277,13 +278,14 @@ export default function Hero() {
                 </span>
               </div>
 
+              {/* Services list */}
               <ul className="space-y-2">
                 {SERVICES_LIVE.map((s, i) => (
                   <motion.li
                     key={s.label}
                     initial={reduce ? false : { opacity: 0, x: 10 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1.15 + i * 0.05 }}
+                    transition={{ delay: 1.1 + i * 0.05 }}
                     className="flex items-center justify-between"
                   >
                     <div className="flex items-center gap-2">
@@ -300,8 +302,27 @@ export default function Hero() {
 
               <div className="my-3 border-t border-ink-line" />
 
+              {/* Tabs */}
+              <div className="flex gap-1.5">
+                {["OOH", "Digital", "Web"].map((m) => (
+                  <div
+                    key={m}
+                    className="flex-1 rounded-lg py-1.5 text-center"
+                    style={{
+                      background: "rgba(45,120,200,0.10)",
+                      border: "1px solid rgba(45,120,200,0.18)",
+                    }}
+                  >
+                    <span className="font-mono text-[0.53rem] uppercase tracking-[0.1em] text-blue-light">
+                      {m}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Phone */}
               <div
-                className="rounded-xl p-3"
+                className="mt-3 rounded-xl p-3"
                 style={{
                   background: "rgba(45,120,200,0.10)",
                   border: "1px solid rgba(45,120,200,0.25)",
@@ -311,8 +332,12 @@ export default function Hero() {
                   Call us now
                 </p>
                 <div className="mt-1 space-y-0.5">
-                  <a href="tel:+919506017729" className="block font-display text-[1.1rem] leading-tight text-paper transition-colors hover:text-blue">+91 95060 17729</a>
-                  <a href="tel:+919838798388" className="block font-display text-[1.1rem] leading-tight text-paper transition-colors hover:text-blue">+91 98387 98388</a>
+                  <a href="tel:+919506017729" className="block font-display text-[1.05rem] leading-tight text-paper transition-colors hover:text-blue">
+                    +91 95060 17729
+                  </a>
+                  <a href="tel:+919838798388" className="block font-display text-[1.05rem] leading-tight text-paper transition-colors hover:text-blue">
+                    +91 98387 98388
+                  </a>
                 </div>
               </div>
 
