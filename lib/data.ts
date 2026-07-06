@@ -179,6 +179,12 @@ export const SERVICES: Service[] = [
 
 export const CITIES = [
   {
+    city: "Delhi",
+    address: "A-39, CR Park, New Delhi — 110019",
+    contact: "Akshay Sinha",
+    phone: "+91 98387 98388",
+  },
+  {
     city: "Lucknow",
     address: "Flat No.5 Greenwood Apartment, 22 Gokhle Marg, Lucknow — 226001",
     contact: "Narjis",
@@ -191,28 +197,22 @@ export const CITIES = [
     phone: "+91 83539 72277",
   },
   {
-    city: "Delhi",
-    address: "A-39, CR Park, New Delhi — 110019",
-    contact: "Akshay Sinha",
-    phone: "+91 98387 98388",
-  },
-  {
     city: "Bhopal",
     address: "8/1 Nupur Kunj E3, Arera Colony, Hoshangabad Road, Bhopal",
     contact: "Syed Iqbal",
     phone: "+91 81759 88988",
   },
   {
-    city: "Agra",
-    address: "501A Corporate Park Building, Sanjay Place, Agra — 282002",
-    contact: "Shubhashish",
-    phone: "+91 99979 27300",
-  },
-  {
     city: "Prayagraj",
     address: "Serving brands across the Prayagraj region.",
     contact: "",
     phone: "",
+  },
+  {
+    city: "Agra",
+    address: "501A Corporate Park Building, Sanjay Place, Agra — 282002",
+    contact: "Shubhashish",
+    phone: "+91 99979 27300",
   },
 ];
 

@@ -82,29 +82,33 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Head office */}
+          {/* All Offices */}
           <div className="md:col-span-4">
             <p className="font-mono text-[0.68rem] uppercase tracking-[0.18em]" style={{ color: "#2D78C8" }}>
-              Head office
+              Our Offices
             </p>
-            <p className="mt-4 text-sm leading-relaxed" style={{ color: "#3a5a7a" }}>
-              {CITIES[0].city} — {CITIES[0].address}
-            </p>
-            <div className="mt-5 space-y-1.5">
-              <a
-                href={`tel:${COMPANY.phone}`}
-                className="block font-mono text-xs transition-colors hover:text-blue"
-                style={{ color: "#1a3a5a" }}
-              >
-                {COMPANY.phone}
-              </a>
-              <a
-                href={`tel:${COMPANY.phone2}`}
-                className="block font-mono text-xs transition-colors hover:text-blue"
-                style={{ color: "#1a3a5a" }}
-              >
-                {COMPANY.phone2}
-              </a>
+            <div className="mt-4 grid grid-cols-2 gap-x-5 gap-y-5">
+              {CITIES.map((c) => (
+                <div key={c.city}>
+                  <p className="font-mono text-[0.6rem] uppercase tracking-[0.14em]" style={{ color: "#2D78C8" }}>
+                    {c.city}
+                  </p>
+                  <p className="mt-1 text-xs leading-relaxed" style={{ color: "#3a5a7a" }}>
+                    {c.address}
+                  </p>
+                  {c.phone && (
+                    <a
+                      href={`tel:${c.phone}`}
+                      className="mt-0.5 block font-mono text-[0.65rem] transition-colors hover:text-blue"
+                      style={{ color: "#5a7a9a" }}
+                    >
+                      {c.phone}
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 space-y-1">
               <a
                 href={`mailto:${COMPANY.email}`}
                 className="block font-mono text-xs transition-colors hover:text-blue"

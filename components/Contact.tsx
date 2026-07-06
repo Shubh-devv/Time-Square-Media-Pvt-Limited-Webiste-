@@ -60,11 +60,24 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-slate-dim">
-                    Head office
+                    Our Offices
                   </p>
-                  <p className="mt-1 text-base leading-relaxed text-slate">
-                    {CITIES[0].city} — {CITIES[0].address}
-                  </p>
+                  <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {CITIES.map((c) => (
+                      <div key={c.city}>
+                        <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-blue">{c.city}</p>
+                        <p className="mt-0.5 text-sm leading-relaxed text-slate">{c.address}</p>
+                        {c.phone && (
+                          <a
+                            href={`tel:${c.phone}`}
+                            className="mt-0.5 block font-mono text-xs text-slate-dim transition-colors hover:text-blue"
+                          >
+                            {c.phone}
+                          </a>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </Reveal>
