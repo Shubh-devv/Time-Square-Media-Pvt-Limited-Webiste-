@@ -363,14 +363,15 @@ export default function Navbar() {
             <div className="h-[72px] flex-none" />
 
             {/*
-              Mobile  → grid-rows [3fr nav | 2fr details]  (stacked, no scroll)
-              Desktop → grid-cols [48% nav | 52% details]  (side-by-side)
+              Mobile  → single scrollable column (nav links then details below)
+              Desktop → side-by-side grid, no scroll needed
             */}
-            <div className="min-h-0 flex-1 grid grid-rows-[3fr_2fr] md:grid-cols-[48%_52%] md:grid-rows-none">
+            <div className="flex-1 overflow-y-auto md:min-h-0 md:overflow-hidden">
+              <div className="flex min-h-full flex-col md:grid md:grid-cols-[48%_52%]">
 
               {/* ── NAV LINKS ─────────────────────────────────────── */}
-              <div className="flex min-h-0 flex-col border-b border-ink-line md:border-b-0 md:border-r">
-                <nav className="flex flex-1 flex-col">
+              <div className="flex flex-col border-b border-ink-line md:min-h-0 md:border-b-0 md:border-r">
+                <nav className="flex flex-col md:flex-1">
                   {ALL_NAV.map((item, i) => (
                     <motion.div
                       key={item.href}
@@ -381,11 +382,11 @@ export default function Navbar() {
                         duration: 0.5,
                         ease: [0.22, 1, 0.36, 1],
                       }}
-                      className="flex min-h-0 flex-1"
+                      className="flex md:flex-1"
                     >
                       <Link
                         href={item.href}
-                        className={`group relative flex flex-1 items-center overflow-hidden border-b border-ink-line px-6 transition-colors duration-300 md:px-14 ${
+                        className={`group relative flex flex-1 items-center overflow-hidden border-b border-ink-line px-6 py-4 transition-colors duration-300 md:py-0 md:px-14 ${
                           pathname === item.href
                             ? "text-blue"
                             : "text-paper hover:text-blue"
@@ -413,7 +414,7 @@ export default function Navbar() {
 
               {/* ── DETAILS: Services + Offices + Contact — SOLID WHITE PANEL ── */}
               <div
-                className="flex min-h-0 flex-col justify-between px-6 py-3 md:px-12 md:py-8"
+                className="flex flex-col justify-between px-6 py-6 md:min-h-0 md:px-12 md:py-8"
                 style={{ background: "#FFFFFF" }}
               >
 
@@ -567,6 +568,7 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
 
+              </div>
               </div>
             </div>
           </motion.div>

@@ -26,13 +26,23 @@ function PageLines() {
 }
 
 export default function ClassicSite() {
-  const [visible, setVisible] = useState(false);
-  const [animating, setAnimating] = useState(false);
+  const [visible, setVisible]       = useState(false);
+  const [animating, setAnimating]   = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
-  /* Slide in from right after page load */
+  /* Slide in after page load */
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 1800);
     return () => clearTimeout(t);
+  }, []);
+
+  /* Hide when any service drawer opens (Services.tsx toggles "drawer-open" on body) */
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setDrawerOpen(document.body.classList.contains("drawer-open"));
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
   }, []);
 
   const trigger = () => {
@@ -44,9 +54,9 @@ export default function ClassicSite() {
 
   return (
     <>
-      {/* ── Floating button — right side, above WhatsApp ── */}
+      {/* ── Floating button — hidden when service drawer is open ── */}
       <AnimatePresence>
-        {visible && (
+        {visible && !drawerOpen && (
           <motion.button
             onClick={trigger}
             initial={{ x: -120, opacity: 0 }}

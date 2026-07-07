@@ -54,9 +54,14 @@ export default function Services({
 
   useEffect(() => {
     document.body.style.overflow = active ? "hidden" : "";
+    document.body.classList.toggle("drawer-open", !!active);
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setActive(null); };
     window.addEventListener("keydown", onKey);
-    return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
+    return () => {
+      document.body.style.overflow = "";
+      document.body.classList.remove("drawer-open");
+      window.removeEventListener("keydown", onKey);
+    };
   }, [active]);
 
   return (

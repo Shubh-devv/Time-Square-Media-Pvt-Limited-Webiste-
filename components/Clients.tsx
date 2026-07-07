@@ -94,7 +94,10 @@ export default function Clients() {
       <div className="shell">
         <Reveal>
           <p className="eyebrow mb-6">The brands we move</p>
-          <h2 className="display text-[clamp(2rem,5vw,3.5rem)] transition-colors duration-500 hover:text-blue">
+          <h2
+            className="display text-[clamp(2rem,5vw,3.5rem)] transition-colors duration-500 hover:text-blue"
+            style={{ lineHeight: 1.12 }}
+          >
             Trusted by brands big <span className="text-blue">&amp;</span> bold.
           </h2>
         </Reveal>
