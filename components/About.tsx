@@ -70,8 +70,7 @@ export default function About() {
                   <path d="M2 10L10 2M4 2h6v6"/>
                 </svg>
               </a>{" "}
-              — our
-              proprietary media platform that connects brands directly to{" "}
+              — our pan-India OOH media platform with{" "}
               <span className="text-blue font-semibold">100+ associate partners</span> and{" "}
               <span className="text-blue font-semibold">10,000+ media units</span> across the
               country. From highway hoardings on national corridors to transit media in smaller
