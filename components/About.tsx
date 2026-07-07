@@ -3,14 +3,11 @@
 import Reveal from "./Reveal";
 import CountUp from "./CountUp";
 
-const ABOUT_STATS: Array<
-  | { type: "number"; value: number; suffix: string; label: string }
-  | { type: "text"; display: string; label: string }
-> = [
-  { type: "number", value: 17,    suffix: "+", label: "Years of Experience"  },
-  { type: "text",   display: "Pan\nIndia",     label: "Presence"             },
-  { type: "number", value: 100,   suffix: "+", label: "Associate Partners"   },
-  { type: "number", value: 10000, suffix: "+", label: "Media Units"          },
+const ABOUT_STATS = [
+  { value: 17,    suffix: "+", label: "Years of Experience",  sub: "Est. 2008"         },
+  { value: 28,    suffix: "+", label: "States Covered",       sub: "Pan India"         },
+  { value: 100,   suffix: "+", label: "Associate Partners",   sub: "Across India"      },
+  { value: 10000, suffix: "+", label: "Media Units",          sub: "OOH · Digital · Web" },
 ];
 
 export default function About() {
@@ -76,20 +73,14 @@ export default function About() {
             {ABOUT_STATS.map((s, i) => (
               <Reveal key={s.label} delay={0.05 * i} className="bg-ink-soft">
                 <div className="flex flex-col items-start p-6">
-                  {s.type === "number" ? (
-                    <div className="font-display text-4xl text-blue md:text-5xl">
-                      <CountUp to={s.value} suffix={s.suffix} />
-                    </div>
-                  ) : (
-                    <div
-                      className="font-display text-3xl leading-[1.05] text-blue md:text-4xl"
-                      style={{ whiteSpace: "pre-line" }}
-                    >
-                      {s.display}
-                    </div>
-                  )}
-                  <div className="mt-2 font-mono text-[0.68rem] uppercase leading-tight tracking-[0.14em] text-slate">
+                  <div className="font-display text-4xl text-blue md:text-5xl">
+                    <CountUp to={s.value} suffix={s.suffix} />
+                  </div>
+                  <div className="mt-2 text-sm font-bold text-paper">
                     {s.label}
+                  </div>
+                  <div className="mt-0.5 text-xs font-medium text-slate">
+                    {s.sub}
                   </div>
                 </div>
               </Reveal>
