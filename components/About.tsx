@@ -58,7 +58,19 @@ export default function About() {
             </p>
             <p className="mt-5 text-lg leading-relaxed text-slate">
               We operate a pan-India OOH network through{" "}
-              <span className="font-semibold text-paper/90">Options.marketing</span> — our
+              <a
+                href="https://options.marketing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 rounded-md px-2 py-0.5 font-bold text-white transition-all duration-200 hover:opacity-80"
+                style={{ background: "linear-gradient(135deg,#2D78C8,#1a5a9e)", letterSpacing: "0.01em" }}
+              >
+                Options.marketing
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2 10L10 2M4 2h6v6"/>
+                </svg>
+              </a>{" "}
+              — our
               proprietary media platform that connects brands directly to{" "}
               <span className="text-blue font-semibold">100+ associate partners</span> and{" "}
               <span className="text-blue font-semibold">10,000+ media units</span> across the

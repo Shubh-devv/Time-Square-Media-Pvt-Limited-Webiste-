@@ -8,7 +8,7 @@ import Reveal from "./Reveal";
 
 const CLIENTS = [
   { name: "BlueStone",       init: "BS", accent: "#1A6FA5", logo: "/clients/Bluestone.jpg"  },
-  { name: "Tea Valley",      init: "TV", accent: "#3A7D44", logo: "/clients/Tea Valley.jpg" },
+   { name: "Tea Valley",      init: "TV", accent: "#3A7D44", logo: "/clients/Tea Valley.jpg" },
   { name: "Pan Bahar",       init: "PB", accent: "#C0392B", logo: "/clients/Pan Bahar.jpg"  },
   { name: "Digiway",         init: "D",  accent: "#2D78C8", logo: "/clients/Digiway.jpg"    },
   { name: "Baljiwan Ghutti", init: "BG", accent: "#16A085", logo: "/clients/Baljiwan.jpg"   },
