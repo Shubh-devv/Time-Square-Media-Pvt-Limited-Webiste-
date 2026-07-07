@@ -218,12 +218,12 @@ export const CITIES = [
 
 export const WORK = [
   { name: "BlueStone",             category: "Outdoor Hoarding",            city: "" },
+  { name: "Pan Bahar",             category: "Branding",                    city: "" },
+  { name: "Dove",                  category: "Branding",                    city: "" },
   { name: "Siggnature",            category: "Outdoor Hoarding",            city: "" },
-  { name: "Dove",                   category: "Branding",                    city: "" },
   { name: "Rudra",                 category: "Outdoor Hoarding",            city: "Kanpur" },
   { name: "Digiway Net Pvt. Ltd.", category: "Branding · Outdoor Hoarding", city: "" },
   { name: "Tea Valley",            category: "Branding",                    city: "" },
-  { name: "Pan Bahar",             category: "Branding",                    city: "" },
   { name: "Paras Hospital",        category: "Branding",                    city: "" },
 ];
 
