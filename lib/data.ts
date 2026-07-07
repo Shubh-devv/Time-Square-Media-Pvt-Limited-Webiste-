@@ -48,10 +48,10 @@ export const IMPACT_STATS = [
 ];
 
 export const HOUSE_STATS = [
-  { value: 12,  suffix: "+", label: "Years in advertising" },
-  { value: 6,   suffix: "",  label: "Cities across India" },
-  { value: 100, suffix: "+", label: "Brands trusted us" },
-  { value: 1,   suffix: "",  label: "In-house fabrication unit" },
+  { value: 17,    suffix: "+", label: "Years of Experience"  },
+  { value: 100,   suffix: "+", label: "Associate Partners"   },
+  { value: 10000, suffix: "+", label: "Media Units Pan India" },
+  { value: 500,   suffix: "+", label: "Campaigns Executed"   },
 ];
 
 export const SERVICES: Service[] = [

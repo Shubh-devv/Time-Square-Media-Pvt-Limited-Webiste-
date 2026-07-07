@@ -1,8 +1,17 @@
 "use client";
 
-import { HOUSE_STATS } from "@/lib/data";
 import Reveal from "./Reveal";
 import CountUp from "./CountUp";
+
+const ABOUT_STATS: Array<
+  | { type: "number"; value: number; suffix: string; label: string }
+  | { type: "text"; display: string; label: string }
+> = [
+  { type: "number", value: 17,    suffix: "+", label: "Years of Experience"  },
+  { type: "text",   display: "Pan\nIndia",     label: "Presence"             },
+  { type: "number", value: 100,   suffix: "+", label: "Associate Partners"   },
+  { type: "number", value: 10000, suffix: "+", label: "Media Units"          },
+];
 
 export default function About() {
   return (
@@ -11,7 +20,7 @@ export default function About() {
       className="relative overflow-hidden border-t border-ink-line py-24 md:py-32"
       style={{ background: "rgba(11,22,40,0.94)" }}
     >
-      {/* Background image — cover fills edge to edge, no side gaps */}
+      {/* Background image */}
       <div
         className="absolute inset-0"
         style={{
@@ -24,35 +33,61 @@ export default function About() {
       />
       {/* Overlay */}
       <div className="absolute inset-0" style={{ background: "rgba(11,22,40,0.46)" }} />
-      <div className="shell grid gap-14 md:grid-cols-12 relative z-10">
+
+      <div className="shell relative z-10 grid gap-14 md:grid-cols-12">
+
+        {/* ── Left: heading ── */}
         <div className="md:col-span-5">
           <Reveal>
             <p className="eyebrow mb-6">Who we are</p>
-            <h2 className="display text-[clamp(2.4rem,6vw,4.5rem)] transition-colors duration-500 hover:text-blue/80">
+            <h2 className="display text-[clamp(2.4rem,6vw,4.5rem)] leading-[0.93] transition-colors duration-500 hover:text-blue/80">
               One agency.<br />
               <span className="text-blue">Every</span> medium.<br />
-              Every city.
+              Pan India.
             </h2>
           </Reveal>
         </div>
 
+        {/* ── Right: copy + stats ── */}
         <div className="md:col-span-7">
           <Reveal delay={0.1}>
-            <p className="text-lg leading-relaxed text-paper/80">
-              We started in Lucknow in 2012 with a simple idea — help brands get seen in places people actually look. Today we work across 6 cities, handling everything from 40-foot hoardings to Google Ads to shop signage, all under one roof.
+            <p className="text-lg leading-relaxed text-paper/85">
+              Founded in 2008, Time Square Media has spent 17+ years building brands across India's
+              most competitive markets. Our reach extends deep into tier 2 and tier 3 cities —
+              precisely where brand visibility creates decisive competitive advantage over rivals
+              still thinking only metro. Built on a foundation of long-term client retention, we
+              have systematically diversified across OOH, digital, and web so every brand gets
+              a unified, always-on presence regardless of medium or market.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-slate">
-              We own our fabrication unit, so there's no outsourcing, no middlemen, no "let me check with the printer" delays. One hoarding in Kanpur or a full multi-city launch — the same team takes it from brief to billboard.
+              We operate a pan-India OOH network through{" "}
+              <span className="font-semibold text-paper/90">Options.marketing</span> — our
+              proprietary media platform that connects brands directly to{" "}
+              <span className="text-blue font-semibold">100+ associate partners</span> and{" "}
+              <span className="text-blue font-semibold">10,000+ media units</span> across the
+              country. From highway hoardings on national corridors to transit media in smaller
+              towns, the network and expertise to reach your audience — wherever they are — is
+              already in place.
             </p>
           </Reveal>
 
+          {/* ── Stats grid ── */}
           <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-ink-line bg-ink-line sm:grid-cols-4">
-            {HOUSE_STATS.map((s, i) => (
+            {ABOUT_STATS.map((s, i) => (
               <Reveal key={s.label} delay={0.05 * i} className="bg-ink-soft">
-                <div className="p-6">
-                  <div className="font-display text-4xl text-blue md:text-5xl">
-                    <CountUp to={s.value} suffix={s.suffix} />
-                  </div>
+                <div className="flex flex-col items-start p-6">
+                  {s.type === "number" ? (
+                    <div className="font-display text-4xl text-blue md:text-5xl">
+                      <CountUp to={s.value} suffix={s.suffix} />
+                    </div>
+                  ) : (
+                    <div
+                      className="font-display text-3xl leading-[1.05] text-blue md:text-4xl"
+                      style={{ whiteSpace: "pre-line" }}
+                    >
+                      {s.display}
+                    </div>
+                  )}
                   <div className="mt-2 font-mono text-[0.68rem] uppercase leading-tight tracking-[0.14em] text-slate">
                     {s.label}
                   </div>
@@ -61,8 +96,8 @@ export default function About() {
             ))}
           </div>
         </div>
+
       </div>
     </section>
   );
 }
-
