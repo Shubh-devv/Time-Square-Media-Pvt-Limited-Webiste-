@@ -781,6 +781,15 @@ export default function ChatBot() {
   const [typing, setTyping]       = useState(false);
   const [activeLang, setActiveLang] = useState<Lang | "auto">("auto");
   const [showLangPicker, setShowLangPicker] = useState(false);
+  const [menuOpen, setMenuOpen]   = useState(false);
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setMenuOpen(document.body.classList.contains("menu-open"));
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
   const bottomRef                 = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -835,6 +844,9 @@ export default function ChatBot() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          opacity: menuOpen ? 0 : 1,
+          pointerEvents: menuOpen ? "none" : "auto",
+          transition: "opacity 0.2s ease",
         }}
       >
         {/* Pulse ring */}

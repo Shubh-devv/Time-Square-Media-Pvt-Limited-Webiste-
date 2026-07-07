@@ -36,10 +36,13 @@ export default function ClassicSite() {
     return () => clearTimeout(t);
   }, []);
 
-  /* Hide when any service drawer opens (Services.tsx toggles "drawer-open" on body) */
+  /* Hide when service drawer or hamburger menu is open */
   useEffect(() => {
     const observer = new MutationObserver(() => {
-      setDrawerOpen(document.body.classList.contains("drawer-open"));
+      setDrawerOpen(
+        document.body.classList.contains("drawer-open") ||
+        document.body.classList.contains("menu-open")
+      );
     });
     observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
     return () => observer.disconnect();
