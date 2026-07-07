@@ -6,9 +6,9 @@ import Image from "next/image";
 import Reveal from "./Reveal";
 
 const CARDS = [
-  { name: "BlueStone",  city: "Lucknow", category: "Outdoor Hoarding", img: "/clients/Bluestone Lucknow Long.png"  },
-  { name: "Pan Bahar",  city: "",        category: "Branding",          img: "/clients/Pan Bahar Long.png"          },
-  { name: "Dove",       city: "Kanpur",  category: "Branding",          img: "/clients/Dove Kanpur Long.png"        },
+  { name: "BlueStone", city: "Lucknow", category: "Outdoor Hoarding", img: "/clients/Bluestone Lucknow Long.png" },
+  { name: "Pan Bahar", city: "",        category: "Branding",          img: "/clients/Pan Bahar Long.png"         },
+  { name: "Dove",      city: "Kanpur",  category: "Branding",          img: "/clients/Dove Kanpur Long.png"       },
 ];
 
 export default function Work({ previewCount }: { previewCount?: number }) {
@@ -31,44 +31,70 @@ export default function Work({ previewCount }: { previewCount?: number }) {
         </div>
 
         {/* 3-card grid */}
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-3">
           {CARDS.map((card, i) => (
-            <Reveal key={card.name + i} delay={0.06 * i}>
+            <Reveal key={card.name + i} delay={0.08 * i}>
               <motion.div
-                whileHover={{ y: -6, scale: 1.015 }}
-                transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                className="group relative overflow-hidden rounded-2xl border border-ink-line bg-ink-soft"
-                style={{ aspectRatio: "4/5" }}
+                whileHover={{ y: -6 }}
+                transition={{ type: "spring", stiffness: 280, damping: 22 }}
+                className="group flex flex-col overflow-hidden rounded-2xl border border-ink-line bg-ink-soft"
               >
-                <Image
-                  src={card.img}
-                  alt={card.name}
-                  fill
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width:640px) 100vw, 33vw"
-                />
-
-                {/* Gradient overlay */}
-                <div
-                  className="absolute inset-0"
-                  style={{ background: "linear-gradient(to top, rgba(6,6,18,0.88) 0%, rgba(6,6,18,0.12) 55%, transparent 100%)" }}
-                />
-
-                {/* Labels */}
-                <div className="absolute bottom-0 inset-x-0 flex flex-col items-start px-6 pb-7 gap-2">
-                  <span className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-paper/50">
+                {/* Image */}
+                <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4/5" }}>
+                  <Image
+                    src={card.img}
+                    alt={card.name}
+                    fill
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width:640px) 100vw, 33vw"
+                  />
+                  {/* Subtle top-only vignette so image reads clean */}
+                  <div
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(to bottom, rgba(6,6,18,0.28) 0%, transparent 40%)" }}
+                  />
+                  {/* Category pill top-left */}
+                  <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/40 px-3 py-1 font-sans text-[0.6rem] font-medium uppercase tracking-widest text-white/75 backdrop-blur-sm">
                     {card.category}
                   </span>
-                  <p className="font-display text-xl font-bold text-paper leading-tight">
+                </div>
+
+                {/* Text below image */}
+                <div className="flex flex-col items-center gap-3 px-5 py-6 text-center">
+                  {/* Brand name */}
+                  <motion.p
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 + 0.07 * i, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="font-sans text-base font-semibold tracking-wide text-paper"
+                  >
                     {card.name}
-                  </p>
-                  {card.city && (
-                    <span
-                      className="rounded-full px-3 py-1 font-sans text-xs font-bold text-white"
-                      style={{ background: "rgba(45,120,200,0.85)", backdropFilter: "blur(6px)", letterSpacing: "0.04em" }}
+                  </motion.p>
+
+                  {/* City — big, animated, blue pill */}
+                  {card.city ? (
+                    <motion.span
+                      initial={{ opacity: 0, y: 16, scale: 0.88 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.18 + 0.07 * i, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                      className="rounded-full px-5 py-2 font-sans text-base font-bold text-white"
+                      style={{ background: "linear-gradient(135deg,#2D78C8,#1a5a9e)", letterSpacing: "0.05em" }}
                     >
                       {card.city}
-                    </span>
+                    </motion.span>
+                  ) : (
+                    <motion.span
+                      initial={{ opacity: 0, y: 16, scale: 0.88 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.18 + 0.07 * i, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                      className="rounded-full px-5 py-2 font-sans text-base font-bold text-slate"
+                      style={{ background: "rgba(255,255,255,0.07)", letterSpacing: "0.05em" }}
+                    >
+                      Pan India
+                    </motion.span>
                   )}
                 </div>
               </motion.div>
@@ -78,7 +104,7 @@ export default function Work({ previewCount }: { previewCount?: number }) {
 
         {/* See all link */}
         {previewCount && (
-          <Reveal delay={0.2}>
+          <Reveal delay={0.22}>
             <div className="mt-10 flex justify-end">
               <Link
                 href="/work"
