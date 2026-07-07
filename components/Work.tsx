@@ -59,56 +59,59 @@ export default function Work({ previewCount }: { previewCount?: number }) {
                   </span>
                 </div>
 
-                {/* Text below image */}
-                <div className="relative flex flex-col px-6 py-5"
-                  style={{ background: "linear-gradient(to bottom, rgba(10,20,40,0.0), rgba(10,20,40,0.0))" }}
+                {/* Glass panel below image */}
+                <div
+                  className="relative flex flex-col gap-3 px-6 py-6"
+                  style={{
+                    background: "rgba(8,18,40,0.55)",
+                    backdropFilter: "blur(18px)",
+                    WebkitBackdropFilter: "blur(18px)",
+                    borderTop: "1px solid rgba(255,255,255,0.07)",
+                  }}
                 >
-                  {/* Top rule with blue accent */}
-                  <div className="mb-4 flex items-center gap-3">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: 28 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.08 + 0.07 * i, duration: 0.5 }}
-                      className="h-[2px] rounded-full bg-blue flex-shrink-0"
-                    />
-                    <div className="h-px flex-1 bg-ink-line" />
-                  </div>
-
                   {/* Brand name */}
                   <motion.h3
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.12 + 0.07 * i, duration: 0.45 }}
-                    className="font-sans text-[1.05rem] font-semibold leading-snug text-paper/90"
-                    style={{ letterSpacing: "0.01em" }}
+                    transition={{ delay: 0.1 + 0.07 * i, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="font-display text-[1.75rem] font-bold leading-tight text-white"
+                    style={{ letterSpacing: "-0.01em" }}
                   >
                     {card.name}
                   </motion.h3>
 
-                  {/* City with pin icon */}
+                  {/* City row */}
                   <motion.div
-                    initial={{ opacity: 0, y: 14 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 + 0.07 * i, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="mt-2 flex items-center gap-1.5"
+                    className="flex items-center gap-2"
                   >
-                    {/* Pin icon */}
-                    <svg width="12" height="14" viewBox="0 0 12 14" fill="none" className="flex-shrink-0" style={{ color: "#2D78C8" }}>
-                      <path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8 4 8s4-5 4-8c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="currentColor"/>
-                    </svg>
+                    {/* Glowing dot */}
                     <span
-                      className="font-sans text-sm font-medium"
-                      style={{ color: "#2D78C8", letterSpacing: "0.06em" }}
+                      className="h-2 w-2 flex-shrink-0 rounded-full"
+                      style={{ background: "#2D78C8", boxShadow: "0 0 8px 2px rgba(45,120,200,0.7)" }}
+                    />
+                    <span
+                      className="font-sans text-sm font-semibold uppercase tracking-[0.12em]"
+                      style={{ color: "rgba(255,255,255,0.65)" }}
                     >
                       {card.city || "Pan India"}
                     </span>
                   </motion.div>
 
-                  {/* Arrow hint — appears on hover */}
-                  <span className="absolute right-5 bottom-5 font-mono text-xs text-blue/0 transition-all duration-300 group-hover:text-blue/70 group-hover:translate-x-1">
+                  {/* Category tag */}
+                  <span
+                    className="self-start font-mono text-[0.58rem] uppercase tracking-[0.16em]"
+                    style={{ color: "rgba(45,120,200,0.6)" }}
+                  >
+                    {card.category}
+                  </span>
+
+                  {/* Arrow hint on hover */}
+                  <span className="absolute right-5 top-1/2 -translate-y-1/2 font-sans text-lg text-blue opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1">
                     →
                   </span>
                 </div>
