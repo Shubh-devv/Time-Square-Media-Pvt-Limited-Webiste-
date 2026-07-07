@@ -144,7 +144,7 @@ export default function Hero() {
 
       {/* ── Main content ── */}
       <div
-        className="relative flex flex-1 items-center px-6 md:px-12 lg:px-16 xl:px-20"
+        className="relative flex flex-1 items-center px-6 pb-24 md:px-12 lg:px-16 lg:pb-28 xl:px-20"
         style={{ zIndex: 10 }}
       >
         <div className="grid w-full items-center gap-8 lg:grid-cols-[1fr_300px] xl:grid-cols-[1fr_320px] xl:gap-12">
