@@ -72,7 +72,7 @@ export default function PageHero({
           initial={reduce ? false : { opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="display text-[clamp(2rem,8vw,7.5rem)] leading-[0.93]"
+          className="display text-[clamp(3.2rem,9vw,7.5rem)] leading-[0.93]"
         >
           {title}
         </motion.h1>
@@ -82,7 +82,7 @@ export default function PageHero({
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.22 }}
-            className="mt-5 max-w-xl text-sm leading-relaxed text-paper/70 sm:mt-7 sm:max-w-2xl sm:text-base md:text-lg"
+            className="mt-5 max-w-xl text-base leading-relaxed text-paper/70 sm:mt-7 sm:max-w-2xl md:text-lg"
           >
             {subtitle}
           </motion.p>
