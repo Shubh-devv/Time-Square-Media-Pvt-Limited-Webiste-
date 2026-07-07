@@ -1,46 +1,64 @@
 "use client";
 
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { WORK } from "@/lib/data";
 import Reveal from "./Reveal";
 
-const WORK_IMAGES: Record<string, string> = {
-  "BlueStone":             "/clients/Bluestone Long.png",
-  "Siggnature":            "/clients/Siggnature Long.png",
-  "Dove":                  "/clients/Loreal Long.png",
-  "Rudra":                 "/clients/Rudra Long.png",
-  "Digiway Net Pvt. Ltd.": "/clients/Digiway Long.png",
-  "Tea Valley":            "/clients/Tea Valley Long.png",
-  "Pan Bahar":             "/clients/Pan Bahar Long.png",
-  "Paras Hospital":        "/clients/Paras Long.png",
-};
-
-/* All long images for the scroll strip — brand + optional city */
-const STRIP_ITEMS = [
-  { name: "BlueStone",      city: "Lucknow",       img: "/clients/Bluestone Lucknow Long.png"          },
-  { name: "Dove",           city: "Kanpur",         img: "/clients/Dove Kanpur Long.png"                },
-  { name: "Siggnature",     city: "Hyderabad",      img: "/clients/Hydrabad Siggnature long.jpeg"       },
-  { name: "Pan Bahar",      city: "",               img: "/clients/Pan Bahar Long.png"                  },
-  { name: "Pan Bahar",      city: "Visakhapatnam",  img: "/clients/Pan Bahar Visakhapatnam Long.png"    },
-  { name: "Paras Hospital", city: "Kanpur",         img: "/clients/Paras Kanpur Long.png"               },
-  { name: "Ratan Jewel",    city: "Kanpur",         img: "/clients/Ratan Jewel Kanpur Long.png"         },
-  { name: "Ratan Paloma",   city: "Kanpur",         img: "/clients/Ratan Paloma Kanpur Long.png"        },
-  { name: "Rudra",          city: "Kanpur",         img: "/clients/Rudra Kanpur Long.png"               },
-  { name: "Siggnature",     city: "",               img: "/clients/Siggnature Long.png"                 },
-  { name: "Tea Valley",     city: "Agra",           img: "/clients/Tea Valley Agra Long.png"            },
-  { name: "Digiway",        city: "",               img: "/clients/Digiway Long.png"                    },
-  { name: "Nestlé",         city: "",               img: "/clients/nestle-long.jpeg"                    },
+/* All long-format campaign images */
+const SLIDES = [
+  { name: "BlueStone",      city: "Lucknow",       img: "/clients/Bluestone Lucknow Long.png"       },
+  { name: "Dove",           city: "Kanpur",         img: "/clients/Dove Kanpur Long.png"              },
+  { name: "Siggnature",     city: "Hyderabad",      img: "/clients/Hydrabad Siggnature long.jpeg"     },
+  { name: "Pan Bahar",      city: "",               img: "/clients/Pan Bahar Long.png"                },
+  { name: "Pan Bahar",      city: "Visakhapatnam",  img: "/clients/Pan Bahar Visakhapatnam Long.png"  },
+  { name: "Paras Hospital", city: "Kanpur",         img: "/clients/Paras Kanpur Long.png"             },
+  { name: "Ratan Jewel",    city: "Kanpur",         img: "/clients/Ratan Jewel Kanpur Long.png"       },
+  { name: "Ratan Paloma",   city: "Kanpur",         img: "/clients/Ratan Paloma Kanpur Long.png"      },
+  { name: "Rudra",          city: "Kanpur",         img: "/clients/Rudra Kanpur Long.png"             },
+  { name: "Siggnature",     city: "",               img: "/clients/Siggnature Long.png"               },
+  { name: "Tea Valley",     city: "Agra",           img: "/clients/Tea Valley Agra Long.png"          },
+  { name: "Digiway",        city: "",               img: "/clients/Digiway Long.png"                  },
+  { name: "Nestlé",         city: "",               img: "/clients/nestle-long.jpeg"                  },
 ];
 
+const slideVariants = {
+  enter: (dir: number) => ({
+    x: dir > 0 ? "100%" : "-100%",
+    opacity: 0,
+  }),
+  center: { x: 0, opacity: 1 },
+  exit: (dir: number) => ({
+    x: dir > 0 ? "-100%" : "100%",
+    opacity: 0,
+  }),
+};
+
 export default function Work({ previewCount }: { previewCount?: number }) {
-  const items = previewCount ? WORK.slice(0, previewCount) : WORK;
-  const isPreview = !!previewCount;
+  const [index, setIndex]   = useState(0);
+  const [dir, setDir]       = useState(1);
+  const [paused, setPaused] = useState(false);
+
+  const go = useCallback((next: number) => {
+    const bounded = (next + SLIDES.length) % SLIDES.length;
+    setDir(next > index ? 1 : -1);
+    setIndex(bounded);
+  }, [index]);
+
+  /* Auto-advance every 4.5 s unless hovered */
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => go(index + 1), 4500);
+    return () => clearInterval(t);
+  }, [index, paused, go]);
+
+  const slide = SLIDES[index];
 
   return (
     <section id="work" className="border-t border-ink-line py-24 md:py-32">
       <div className="shell">
+        {/* ── Heading ── */}
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <Reveal>
             <p className="eyebrow mb-6">Selected work</p>
@@ -54,118 +72,137 @@ export default function Work({ previewCount }: { previewCount?: number }) {
             </p>
           </Reveal>
         </div>
-      </div>
 
-      {/* ── Full-width auto-scrolling strip ── */}
-      <div className="relative mt-14 overflow-hidden"
-        style={{
-          WebkitMaskImage: "linear-gradient(90deg,transparent 0%,black 7%,black 93%,transparent 100%)",
-          maskImage:        "linear-gradient(90deg,transparent 0%,black 7%,black 93%,transparent 100%)",
-        }}
-      >
-        <motion.div
-          className="flex gap-4 w-max"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 38, ease: "linear", repeat: Infinity }}
-        >
-          {/* Two copies for seamless loop */}
-          {[...STRIP_ITEMS, ...STRIP_ITEMS].map((item, i) => (
-            <div
-              key={i}
-              className="relative flex-shrink-0 overflow-hidden rounded-xl"
-              style={{ width: 180, height: 252 }}
+        {/* ── Carousel ── */}
+        <Reveal delay={0.08}>
+          <div
+            className="mt-14"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
+            {/* Image frame */}
+            <div className="relative w-full overflow-hidden rounded-2xl border border-ink-line bg-ink-soft"
+              style={{ aspectRatio: "4/5", maxHeight: "80vh" }}
             >
-              <Image
-                src={item.img}
-                alt={item.name}
-                fill
-                className="object-cover object-center"
-                sizes="180px"
-              />
+              <AnimatePresence custom={dir} mode="wait">
+                <motion.div
+                  key={index}
+                  custom={dir}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={slide.img}
+                    alt={slide.name}
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width:768px) 100vw, 60vw"
+                    priority
+                  />
 
-              {/* Bottom gradient */}
-              <div
-                className="absolute inset-0"
-                style={{ background: "linear-gradient(to top,rgba(6,6,18,0.88) 0%,rgba(6,6,18,0.2) 48%,transparent 100%)" }}
-              />
+                  {/* Gradient overlay */}
+                  <div
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(to top,rgba(6,6,18,0.88) 0%,rgba(6,6,18,0.18) 45%,transparent 100%)" }}
+                  />
 
-              {/* Label: city pill if city, brand name if not */}
-              <div className="absolute bottom-0 inset-x-0 flex flex-col items-center pb-3 gap-1">
-                {item.city ? (
-                  <>
-                    <span className="font-sans text-[0.6rem] font-medium text-paper/60 leading-none">
-                      {item.name}
-                    </span>
-                    <span
-                      className="rounded-full px-2.5 py-0.5 font-sans text-[0.62rem] font-bold text-white"
-                      style={{ background: "rgba(45,120,200,0.82)", backdropFilter: "blur(6px)" }}
+                  {/* City / brand label — animated */}
+                  <div className="absolute bottom-0 inset-x-0 flex flex-col items-center pb-8 gap-2">
+                    <motion.p
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.18, duration: 0.4 }}
+                      className="font-sans text-xs font-semibold uppercase tracking-[0.18em] text-paper/55"
                     >
-                      {item.city}
-                    </span>
-                  </>
-                ) : (
-                  <span
-                    className="rounded-full px-2.5 py-0.5 font-sans text-[0.62rem] font-bold text-white"
-                    style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(6px)" }}
-                  >
-                    {item.name}
-                  </span>
-                )}
+                      {slide.name}
+                    </motion.p>
+
+                    <motion.span
+                      initial={{ opacity: 0, y: 14, scale: 0.92 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ delay: 0.28, duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+                      className="rounded-full px-4 py-1.5 font-sans text-sm font-bold text-white"
+                      style={{
+                        background: slide.city
+                          ? "rgba(45,120,200,0.88)"
+                          : "rgba(0,0,0,0.60)",
+                        backdropFilter: "blur(8px)",
+                        letterSpacing: "0.04em",
+                      }}
+                    >
+                      {slide.city || slide.name}
+                    </motion.span>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Prev / Next arrows */}
+              <button
+                onClick={() => go(index - 1)}
+                aria-label="Previous"
+                className="absolute left-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-sm transition-all hover:bg-blue hover:border-blue"
+              >
+                <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" viewBox="0 0 24 24">
+                  <path d="M15 18l-6-6 6-6"/>
+                </svg>
+              </button>
+              <button
+                onClick={() => go(index + 1)}
+                aria-label="Next"
+                className="absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-sm transition-all hover:bg-blue hover:border-blue"
+              >
+                <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" viewBox="0 0 24 24">
+                  <path d="M9 18l6-6-6-6"/>
+                </svg>
+              </button>
+
+              {/* Slide counter */}
+              <div className="absolute right-4 top-4 rounded-full bg-black/50 px-3 py-1 font-mono text-[0.6rem] text-white/70 backdrop-blur-sm">
+                {String(index + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
               </div>
             </div>
-          ))}
-        </motion.div>
-      </div>
 
-      {/* ── Card grid ── */}
-      <div className="shell">
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((w, i) => (
-            <Reveal key={w.name} delay={0.04 * i}>
-              <article className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-2xl border border-ink-line bg-ink-soft transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_60px_rgba(45,120,200,0.22)]">
-                {WORK_IMAGES[w.name] && (
-                  <Image
-                    src={WORK_IMAGES[w.name]}
-                    alt={w.name}
-                    fill
-                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
-                  />
-                )}
-
-                <div
-                  aria-hidden
-                  className="absolute inset-0 transition-opacity duration-500"
-                  style={{ background: "linear-gradient(to top, rgba(6,6,16,0.92) 0%, rgba(6,6,16,0.45) 50%, rgba(6,6,16,0.15) 100%)" }}
+            {/* Dot indicators */}
+            <div className="mt-5 flex items-center justify-center gap-2 flex-wrap">
+              {SLIDES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => go(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  className="transition-all duration-300"
+                  style={{
+                    width:  i === index ? 24 : 8,
+                    height: 4,
+                    borderRadius: 4,
+                    background: i === index ? "#2D78C8" : "rgba(255,255,255,0.2)",
+                  }}
                 />
-                <div
-                  aria-hidden
-                  className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  style={{ background: "linear-gradient(135deg, rgba(45,120,200,0.22) 0%, transparent 60%)" }}
+              ))}
+            </div>
+
+            {/* Progress bar */}
+            {!paused && (
+              <div className="mt-3 h-px w-full overflow-hidden rounded-full bg-ink-line">
+                <motion.div
+                  key={index}
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 4.5, ease: "linear" }}
+                  className="h-full rounded-full bg-blue"
                 />
-                <div
-                  aria-hidden
-                  className="absolute right-5 top-5 font-display text-7xl text-paper/10 transition-colors group-hover:text-paper/20"
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </div>
+              </div>
+            )}
+          </div>
+        </Reveal>
 
-                <div className="relative z-10 p-6">
-                  <h3 className="font-display text-2xl uppercase leading-tight tracking-wide text-paper transition-colors group-hover:text-blue md:text-3xl">
-                    {w.name}
-                  </h3>
-                  <p className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-slate">
-                    {w.category}{w.city ? ` · ${w.city}` : ""}
-                  </p>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-
-        {isPreview && (
+        {/* See all link */}
+        {previewCount && (
           <Reveal delay={0.12}>
-            <div className="mt-10 flex justify-end">
+            <div className="mt-8 flex justify-end">
               <Link
                 href="/work"
                 className="font-mono text-xs uppercase tracking-[0.2em] text-blue transition-colors hover:text-blue-light"
