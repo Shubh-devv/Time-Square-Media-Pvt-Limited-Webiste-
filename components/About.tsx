@@ -38,8 +38,8 @@ export default function About() {
           <Reveal>
             <p className="eyebrow mb-6">Who we are</p>
             <h2 className="display text-[clamp(2.4rem,6vw,4.5rem)] leading-[0.93] transition-colors duration-500 hover:text-blue/80">
-              One agency.<br />
-              <span className="text-blue">Every</span> medium.<br />
+              One Agency.<br />
+              <span className="text-blue">Every</span> Solution.<br />
               Pan India.
             </h2>
           </Reveal>
@@ -50,7 +50,7 @@ export default function About() {
           <Reveal delay={0.1}>
             <p className="text-lg leading-relaxed text-paper/85">
               Founded in 2008, Time Square Media has spent 17+ years building brands across India's
-              most competitive markets. Our reach extends deep into tier 2 and tier 3 cities —
+              most competitive markets. Our reach extends across every region and pan India —
               precisely where brand visibility creates decisive competitive advantage over rivals
               still thinking only metro. Built on a foundation of long-term client retention, we
               have systematically diversified across OOH, digital, and web so every brand gets
