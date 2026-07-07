@@ -249,7 +249,7 @@ export default function Hero() {
             initial={reduce ? false : { opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.95, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden lg:block"
+            className="hidden lg:block lg:mr-10 xl:mr-16"
           >
             <div
               className="rounded-2xl p-4"
