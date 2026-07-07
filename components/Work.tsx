@@ -10,7 +10,7 @@ const CARDS = [
   { name: "BlueStone",      city: "Lucknow",      category: "Outdoor Hoarding", img: "/clients/Bluestone Lucknow Long.png"      },
   { name: "Pan Bahar",      city: "",              category: "Branding",          img: "/clients/Pan Bahar Long.png"               },
   { name: "Dove",           city: "Kanpur",        category: "Branding",          img: "/clients/Dove Kanpur Long.png"             },
-  { name: "Siggnature",     city: "Hyderabad",     category: "Outdoor Hoarding",  img: "/clients/Hydrabad Siggnature long.jpeg"    },
+  { name: "Siggnature",     city: "Hyderabad",     category: "Outdoor Hoarding",  img: "/clients/Hydrabad Siggnature Long.jpeg"    },
   { name: "Pan Bahar",      city: "Visakhapatnam", category: "Branding",          img: "/clients/Pan Bahar Visakhapatnam Long.png" },
   { name: "Paras Hospital", city: "Kanpur",        category: "Healthcare",        img: "/clients/Paras Kanpur Long.png"            },
   { name: "Ratan Jewel",    city: "Kanpur",        category: "Retail Branding",   img: "/clients/Ratan Jewel Kanpur Long.png"      },
