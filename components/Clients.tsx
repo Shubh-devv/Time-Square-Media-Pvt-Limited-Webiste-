@@ -6,16 +6,23 @@ import Image from "next/image";
 import Reveal from "./Reveal";
 
 
-/* Pan-India campaign glimpses — city takes the spotlight, not the brand */
-const CAMPAIGNS = [
-  { city: "Lucknow",       img: "/clients/Bluestone Lucknow Long.png"       },
-  { city: "Kanpur",        img: "/clients/Dove Kanpur Long.png"             },
-  { city: "Hyderabad",     img: "/clients/Hydrabad Siggnature Long.png"     },
-  { city: "Visakhapatnam", img: "/clients/Pan Bahar Visakhapatnam Long.png" },
-  { city: "Kanpur",        img: "/clients/Ratan Jewel Kanpur Long.png"      },
-  { city: "Agra",          img: "/clients/Tea Valley Agra Long.png"         },
-  { city: "Kanpur",        img: "/clients/Rudra Kanpur Long.png"            },
-  { city: "Delhi",         img: "/clients/siggnature delhi airport.jpeg"    },
+const CLIENTS = [
+  { name: "BlueStone",       init: "BS", accent: "#1A6FA5", logo: "/clients/Bluestone.jpg"  },
+   { name: "Tea Valley",      init: "TV", accent: "#3A7D44", logo: "/clients/Tea Valley.jpg" },
+  { name: "Pan Bahar",       init: "PB", accent: "#C0392B", logo: "/clients/Pan Bahar.jpg"  },
+  { name: "Digiway",         init: "D",  accent: "#2D78C8", logo: "/clients/Digiway.jpg"    },
+  { name: "Baljiwan Ghutti", init: "BG", accent: "#16A085", logo: "/clients/Baljiwan.jpg"   },
+  { name: "Siggnature",      init: "S",  accent: "#2C3E50", logo: "/clients/Siggnature.jpg" },
+  { name: "Rudra",           init: "R",  accent: "#C0392B", logo: "/clients/Rudra.jpg"      },
+  { name: "Paras",           init: "P",  accent: "#E8511A", logo: "/clients/Paras.jpg"      },
+  { name: "Tanishq",         init: "T",  accent: "#B8860B", logo: "/clients/Tanishq.jpg"    },
+  { name: "Maruti",          init: "M",  accent: "#003087", logo: "/clients/Maruti.png"      },
+  { name: "Ratan",           init: "R",  accent: "#8E44AD", logo: "/clients/Ratan.jpg"      },
+  { name: "Allen",           init: "A",  accent: "#1A73E8", logo: "/clients/Allen.png"       },
+  { name: "Aakash",          init: "A",  accent: "#E67E22", logo: "/clients/Aakash.jpg"     },
+  { name: "Kashi",           init: "K",  accent: "#FF6B35", logo: "/clients/Kashi.png"       },
+  { name: "PNG",             init: "P",  accent: "#DAA520", logo: "/clients/PNG.jpg"         },
+  { name: "ACC",             init: "A",  accent: "#546E7A", logo: "/clients/ACC.png"          },
 ];
 
 const STATS = [
@@ -86,64 +93,92 @@ export default function Clients() {
     <section className="border-t border-ink-line py-24 md:py-28">
       <div className="shell">
         <Reveal>
-          <p className="eyebrow mb-6">A glimpse of our pan India campaign</p>
+          <p className="eyebrow mb-6">The brands we move</p>
           <h2
             className="display text-[clamp(2rem,5vw,3.5rem)] transition-colors duration-500 hover:text-blue"
             style={{ lineHeight: 1.12 }}
           >
-            Brands we&apos;ve <span className="text-blue">put on the map.</span>
+            Trusted by brands big <span className="text-blue">&amp;</span> bold.
           </h2>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {CAMPAIGNS.map((c, i) => (
-            <Reveal key={`${c.city}-${i}`} delay={0.04 * i}>
+        <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          {CLIENTS.map((c, i) => (
+            <Reveal key={c.name} delay={0.04 * i}>
               <motion.div
                 onHoverStart={() => setHovered(i)}
                 onHoverEnd={() => setHovered(null)}
                 animate={
                   hovered === i
-                    ? { scale: 1.04, y: -6 }
+                    ? { scale: 1.08, y: -6 }
                     : hovered !== null
-                    ? { scale: 0.97, opacity: 0.6 }
+                    ? { scale: 0.95, opacity: 0.55 }
                     : { scale: 1, y: 0, opacity: 1 }
                 }
                 transition={{ type: "spring", damping: 22, stiffness: 320 }}
-                className="group relative flex cursor-default flex-col overflow-hidden rounded-2xl border border-ink-line"
+                className="group relative flex cursor-default flex-col items-center gap-3 rounded-2xl border border-ink-line bg-ink-soft p-5 text-center"
+                style={
+                  hovered === i
+                    ? {
+                        borderColor: c.accent + "55",
+                        boxShadow: `0 16px 40px ${c.accent}22, 0 0 0 1px ${c.accent}33`,
+                      }
+                    : {}
+                }
               >
-                {/* Campaign photo */}
-                <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4/5" }}>
-                  <Image
-                    src={c.img}
-                    alt={`${c.city} outdoor campaign`}
-                    fill
-                    className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                    sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 25vw"
-                  />
-                  {/* Bottom gradient so the city name always reads */}
-                  <div
-                    className="pointer-events-none absolute inset-0"
-                    style={{ background: "linear-gradient(to top, rgba(6,6,18,0.92) 0%, rgba(6,6,18,0.35) 42%, transparent 68%)" }}
-                  />
-
-                  {/* City name — big, front and center */}
-                  <div className="absolute inset-x-0 bottom-0 p-4">
+                {/* Logo image or styled text mark */}
+                <div
+                  className="relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl transition-transform duration-300 group-hover:scale-110"
+                  style={{
+                    background: c.logo
+                      ? "#fff"
+                      : `linear-gradient(135deg, ${c.accent} 0%, ${c.accent}cc 100%)`,
+                    boxShadow: hovered === i
+                      ? `0 8px 28px ${c.accent}55`
+                      : `0 2px 10px ${c.accent}22`,
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  {c.logo ? (
+                    <Image
+                      src={c.logo}
+                      alt={c.name}
+                      fill
+                      className="object-contain p-2"
+                      sizes="80px"
+                    />
+                  ) : (
                     <span
-                      className="font-display text-2xl uppercase leading-none text-white transition-colors duration-300 sm:text-3xl md:text-4xl"
-                      style={{ letterSpacing: "-0.01em" }}
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontSize: c.init.length > 3 ? "0.85rem" : c.init.length > 1 ? "1rem" : "1.5rem",
+                        letterSpacing: "0.04em",
+                        color: "#fff",
+                        fontWeight: 900,
+                        textShadow: "0 1px 4px rgba(0,0,0,0.3)",
+                        lineHeight: 1,
+                      }}
                     >
-                      {c.city}
+                      {c.init}
                     </span>
-                  </div>
+                  )}
                 </div>
 
-                {/* Accent glow ring on hover */}
+                {/* Client name */}
+                <p
+                  className="text-[0.72rem] font-mono uppercase leading-tight tracking-[0.1em] transition-colors duration-300"
+                  style={{ color: hovered === i ? c.accent : "rgba(136,136,152,0.75)" }}
+                >
+                  {c.name}
+                </p>
+
+                {/* Glow ring on hover */}
                 {hovered === i && (
                   <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     className="pointer-events-none absolute inset-0 rounded-2xl"
-                    style={{ boxShadow: "inset 0 0 0 1px rgba(45,120,200,0.5), 0 16px 40px rgba(45,120,200,0.2)" }}
+                    style={{ boxShadow: `inset 0 0 20px ${c.accent}18` }}
                   />
                 )}
               </motion.div>

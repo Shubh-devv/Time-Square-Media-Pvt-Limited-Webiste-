@@ -61,23 +61,11 @@ function Card({ card, index }: { card: typeof CARDS[0]; index: number }) {
         }}
       >
         <h3
-          className="font-display text-[1.75rem] font-bold leading-tight text-white"
+          className="font-display text-[2rem] font-bold leading-tight text-white"
           style={{ letterSpacing: "-0.01em" }}
         >
-          {card.name}
+          {card.city || "Pan India"}
         </h3>
-        <div className="flex items-center gap-2">
-          <span
-            className="h-2 w-2 flex-shrink-0 rounded-full"
-            style={{ background: "#2D78C8", boxShadow: "0 0 8px 2px rgba(45,120,200,0.7)" }}
-          />
-          <span
-            className="font-sans text-sm font-semibold uppercase tracking-[0.12em]"
-            style={{ color: "rgba(255,255,255,0.65)" }}
-          >
-            {card.city || "Pan India"}
-          </span>
-        </div>
         <span
           className="self-start font-mono text-[0.58rem] uppercase tracking-[0.16em]"
           style={{ color: "rgba(45,120,200,0.6)" }}
@@ -119,7 +107,7 @@ export default function Work({ previewCount }: { previewCount?: number }) {
           <Reveal>
             <p className="eyebrow mb-6">Selected work</p>
             <h2 className="display text-[clamp(2.4rem,7vw,5.5rem)]">
-              Brands we&apos;ve<br />put on the map.
+              Glimpses of our<br />pan India campaigns.
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
