@@ -43,14 +43,14 @@ function Card({ card, index }: { card: typeof CARDS[0]; index: number }) {
         />
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(to bottom, rgba(6,6,18,0.28) 0%, rgba(6,6,18,0.15) 40%, rgba(6,6,18,0.55) 100%)" }}
+          style={{ background: "linear-gradient(to bottom, rgba(6,6,18,0.28) 0%, rgba(6,6,18,0.05) 35%, rgba(6,6,18,0.85) 100%)" }}
         />
         <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/40 px-3 py-1 font-sans text-[0.6rem] font-medium uppercase tracking-widest text-white/75 backdrop-blur-sm">
           {card.category}
         </span>
 
-        {/* City name, centered over the image */}
-        <div className="absolute inset-0 flex items-center justify-center px-4">
+        {/* City name, bottom of the image */}
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-center px-4 pb-6">
           <h3
             className="text-center font-display uppercase text-white transition-transform duration-500 group-hover:scale-105"
             style={{
