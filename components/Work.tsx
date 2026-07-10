@@ -50,17 +50,7 @@ function Card({ card, index }: { card: typeof CARDS[0]; index: number }) {
         </span>
 
         {/* City name, centered over the image */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4">
-          <span
-            className="flex items-center gap-1.5 font-mono text-[0.6rem] uppercase tracking-[0.32em] text-white/60 transition-colors duration-500 group-hover:text-blue-light"
-            style={{ textShadow: "0 2px 6px rgba(0,0,0,0.6)" }}
-          >
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M12 21s-7-6.2-7-11.2A7 7 0 0 1 19 9.8C19 14.8 12 21 12 21Z" />
-              <circle cx="12" cy="9.5" r="2.3" />
-            </svg>
-            Location
-          </span>
+        <div className="absolute inset-0 flex items-center justify-center px-4">
           <h3
             className="text-center font-display uppercase text-white transition-transform duration-500 group-hover:scale-105"
             style={{
@@ -68,18 +58,11 @@ function Card({ card, index }: { card: typeof CARDS[0]; index: number }) {
               letterSpacing: "0.01em",
               lineHeight: 1,
               textShadow: "0 2px 10px rgba(0,0,0,0.7), 0 14px 44px rgba(0,0,0,0.55)",
-              background: "linear-gradient(180deg, #ffffff 10%, #a9cdf2 100%)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
+              color: "#ffffff",
             }}
           >
             {card.city || "Pan India"}
           </h3>
-          <span
-            className="h-[2px] w-8 rounded-full transition-all duration-500 ease-out group-hover:w-16"
-            style={{ background: "linear-gradient(90deg, transparent, #5BA3E8, transparent)" }}
-          />
         </div>
       </div>
 
