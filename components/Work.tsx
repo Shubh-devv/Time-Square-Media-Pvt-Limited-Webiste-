@@ -43,16 +43,35 @@ function Card({ card, index }: { card: typeof CARDS[0]; index: number }) {
         />
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(to bottom, rgba(6,6,18,0.28) 0%, transparent 40%)" }}
+          style={{ background: "linear-gradient(to bottom, rgba(6,6,18,0.28) 0%, rgba(6,6,18,0.15) 40%, rgba(6,6,18,0.55) 100%)" }}
         />
         <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/40 px-3 py-1 font-sans text-[0.6rem] font-medium uppercase tracking-widest text-white/75 backdrop-blur-sm">
           {card.category}
         </span>
+
+        {/* City name, centered over the image */}
+        <div className="absolute inset-0 flex items-center justify-center px-4">
+          <h3
+            className="text-center font-display uppercase text-white transition-transform duration-500 group-hover:scale-105"
+            style={{
+              fontSize: "clamp(1.9rem, 5vw, 2.75rem)",
+              letterSpacing: "0.03em",
+              lineHeight: 1.05,
+              textShadow: "0 2px 6px rgba(0,0,0,0.65), 0 12px 40px rgba(0,0,0,0.5)",
+              background: "linear-gradient(180deg, #ffffff 0%, #cfe3ff 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            {card.city || "Pan India"}
+          </h3>
+        </div>
       </div>
 
       {/* Glass panel */}
       <div
-        className="relative flex flex-col gap-3 px-6 py-6"
+        className="relative flex items-center gap-3 px-6 py-5"
         style={{
           background: "rgba(8,18,40,0.55)",
           backdropFilter: "blur(18px)",
@@ -60,12 +79,6 @@ function Card({ card, index }: { card: typeof CARDS[0]; index: number }) {
           borderTop: "1px solid rgba(255,255,255,0.07)",
         }}
       >
-        <h3
-          className="font-display text-[2rem] font-bold leading-tight text-white"
-          style={{ letterSpacing: "-0.01em" }}
-        >
-          {card.city || "Pan India"}
-        </h3>
         <span
           className="self-start font-mono text-[0.58rem] uppercase tracking-[0.16em]"
           style={{ color: "rgba(45,120,200,0.6)" }}
