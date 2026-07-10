@@ -65,27 +65,6 @@ function Card({ card, index }: { card: typeof CARDS[0]; index: number }) {
           </h3>
         </div>
       </div>
-
-      {/* Glass panel */}
-      <div
-        className="relative flex items-center gap-3 px-6 py-5"
-        style={{
-          background: "rgba(8,18,40,0.55)",
-          backdropFilter: "blur(18px)",
-          WebkitBackdropFilter: "blur(18px)",
-          borderTop: "1px solid rgba(255,255,255,0.07)",
-        }}
-      >
-        <span
-          className="self-start font-mono text-[0.58rem] uppercase tracking-[0.16em]"
-          style={{ color: "rgba(45,120,200,0.6)" }}
-        >
-          {card.category}
-        </span>
-        <span className="absolute right-5 top-1/2 -translate-y-1/2 font-sans text-lg text-blue opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1">
-          →
-        </span>
-      </div>
     </motion.div>
   );
 }
