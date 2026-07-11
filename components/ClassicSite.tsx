@@ -51,7 +51,7 @@ export default function ClassicSite() {
   const trigger = () => {
     if (animating) return;
     setAnimating(true);
-    setTimeout(() => window.open("https://timesquaremedia.in/old/", "_blank"), 2000);
+    setTimeout(() => window.open("https://classic.timesquaremedia.in/", "_blank"), 2000);
     setTimeout(() => setAnimating(false), 2900);
   };
 
