@@ -15,6 +15,78 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "which-ooh-format-is-best-for-your-business-2026",
+    title: "Which Type of OOH Advertising Is Best for Your Business? A 2026 Industry Guide",
+    excerpt:
+      "Billboards, unipoles, DOOH, transit, mobile media or on/in signage — the right OOH format depends entirely on your business category. Here's a practical, industry-by-industry breakdown to help you choose.",
+    date: "2026-06-12",
+    readTime: "8 min",
+    category: "OOH Advertising",
+    sections: [
+      {
+        text: "\"Should I book a billboard or a digital screen?\" is the wrong first question. The right first question is: what business are you, and what does your customer's daily journey look like? OOH advertising is not one format — it's a toolkit of hoardings, unipoles, gantries, Digital OOH (DOOH), transit, mobile media and on/in signage, and each one serves a different kind of business best. Here's how to match the format to your category.",
+      },
+      {
+        heading: "Real Estate, Banks & FMCG — Hoardings, Unipoles & Gantries",
+        text: "Brands that sell trust and scale — real estate developers, banks, NBFCs, insurance and large FMCG — get the most value from static OOH on high-footfall arterial roads, highways and city entry points. A large-format hoarding or unipole delivers 24/7 unavoidable visibility and signals permanence and credibility, which matters most when the purchase decision is high-value or long-consideration. Gantries spanning the full road width work especially well for project launches and city-wide brand campaigns.",
+      },
+      {
+        heading: "Restaurants, Clinics, Gyms & Retail Stores — On/In Media & Place-Based OOH",
+        text: "For businesses where the decision happens near the storefront, hoardings three kilometres away are less useful than signage right at the point of decision. Neon and crystal LED signboards, window displays, dealer boards and place-based ads inside malls, gyms and office lobbies convert far better for restaurants, clinics, salons and retail stores. This is also the format that benefits most from consistent branding across multiple outlets — retail consultancy and in-house fabrication keep every location on-brand.",
+      },
+      {
+        heading: "D2C, Food Delivery, E-commerce & Local Services — Mobile Media",
+        text: "D2C and e-commerce brands don't have a single physical location to anchor around — their customers are spread across every residential lane and commercial micro-market in a city. Mobile media (auto and toto branding, activity vans, canters) solves this by putting the brand in motion through exactly those neighbourhoods, delivering an estimated 800–1,500 impressions per vehicle per day at a very efficient cost-per-thousand. It's also one of the fastest OOH formats to launch, making it ideal for app downloads, delivery radius launches and local service businesses.",
+      },
+      {
+        heading: "Product Launches, Sales & Time-Sensitive Offers — Digital OOH (DOOH)",
+        text: "Anything with a date attached — a festive sale, a flash offer, a movie release, an election, a product launch countdown — is better served by Digital OOH. Because DOOH content is screen-based, creative can rotate, update in real time, and adapt by time of day or even weather, without any reprinting cost. This flexibility is exactly what static print cannot offer, which is why programmatic DOOH is the fastest-growing OOH format both globally and in India.",
+      },
+      {
+        heading: "FMCG Launches, Colleges & Malls — BTL Activations",
+        text: "When the goal is trial, sampling or direct engagement rather than pure awareness, BTL (below-the-line) activations outperform any fixed-format OOH. Mall activations, campus road shows and on-ground sampling drives create the face-to-face interaction that a billboard cannot. The best-performing brands run BTL alongside OOH — hoardings build pre-event awareness, the activation converts it into trial and leads.",
+      },
+      {
+        heading: "Choosing Your Mix: A Simple Framework",
+        text: "Ask three questions: (1) Is my decision high-value and considered (real estate, BFSI) or low-friction and local (food, services)? High-value → static OOH for trust; low-friction/local → mobile media and on/in signage for proximity. (2) Is my message time-sensitive? If yes, weight toward DOOH. (3) Do I need trial, not just awareness? If yes, add BTL. Most growing Indian brands don't pick one format — they combine 2–3 of these, and pair the mix with digital marketing to convert the awareness OOH creates. Time Square Media plans and executes every format above in-house across six cities — talk to us about the right mix for your category.",
+      },
+    ],
+  },
+  {
+    slug: "dooh-vs-ooh-vs-digital-marketing-2026",
+    title: "OOH vs DOOH vs Digital Marketing: The Complete 2026 Comparison",
+    excerpt:
+      "Traditional billboards, Digital OOH screens, and Google/Meta ads all claim to be the best use of your marketing budget. Here's an honest, data-backed comparison of all three — and the mix that actually works for Indian brands.",
+    date: "2026-05-20",
+    readTime: "7 min",
+    category: "Strategy",
+    sections: [
+      {
+        text: "Marketing managers are increasingly asked to choose between three very different tools: traditional OOH (static billboards and hoardings), Digital OOH (DOOH — programmatic digital screens), and digital marketing (Google Ads, Meta Ads, SEO). Each has a different job. Understanding what each one is actually good at — rather than picking a favourite — is what separates a mediocre budget allocation from a genuinely effective one.",
+      },
+      {
+        heading: "Traditional OOH: The Reliable Awareness Engine",
+        text: "Static hoardings and billboards remain the lowest cost-per-impression format available, and they carry a structural advantage no other channel has: they cannot be ad-blocked, muted, skipped or scrolled past. Industry data shows OOH delivers roughly ₹5.97 in value for every rupee spent, and 92% of people notice OOH ads every month. The tradeoff is flexibility — once a hoarding is printed and installed, the creative is fixed until the campaign ends.",
+      },
+      {
+        heading: "Digital OOH (DOOH): Flexibility Meets Outdoor Reach",
+        text: "DOOH keeps the unskippable, unblockable advantage of OOH while adding what static print cannot: real-time creative changes, day-parting, weather-triggered messaging and audience-based rotation. Contextual DOOH messaging can lift campaign effectiveness by up to 49% compared to static OOH, and brands that add DOOH to their media mix see meaningfully higher overall ROI than single-format campaigns. The tradeoff is cost — screen time and programmatic buying typically carry a higher upfront investment than an equivalent static site.",
+      },
+      {
+        heading: "Digital Marketing: Precision and Measurability",
+        text: "Google Search, Meta Ads and SEO offer something neither OOH format can: audience-level targeting and trackable, real-time performance data down to the rupee. Digital marketing is unmatched for driving a specific, measurable action — a form fill, a call, a purchase — from someone who is already looking for what you sell. Its limitation is exactly the opposite of OOH's strength: digital ads can be blocked, scrolled past, or ignored, and building broad city-wide brand trust through digital alone is slow and expensive.",
+      },
+      {
+        heading: "What Happens When You Combine Them",
+        text: "The data on combined campaigns is consistent: OOH campaigns drive a 316% increase in mobile search activity while they're running, and consumers who see a brand on a billboard and then again on social media recall it roughly 74% better than those who saw only the digital ad. DOOH plus digital marketing sees an even sharper lift — brands using both in tandem report significantly higher ROI than brands using either channel alone. The billboard (or screen) builds the subconscious trust; the digital ad captures the person the moment they act on it.",
+      },
+      {
+        heading: "Our Recommendation by Budget and Goal",
+        text: "For a new market entry or brand launch, weight toward static OOH plus DOOH for maximum unmissable reach, with digital marketing running in the same geography to capture search intent as it builds. For an established brand pushing a specific offer or sale, weight toward DOOH plus digital marketing for speed and flexibility. As a general rule for Indian brands with quarterly budgets of ₹5L–₹20L, we recommend roughly 50–60% OOH/DOOH for awareness and 30–40% digital marketing for conversions, with the balance kept for testing. Time Square Media runs OOH, DOOH and digital marketing entirely in-house, so your outdoor and online campaigns always tell the same story — talk to our team about the right split for your goals.",
+      },
+    ],
+  },
+  {
     slug: "billboard-advertising-cost-india-2025",
     title: "Billboard Advertising Cost in India 2025: A Complete Price Guide",
     excerpt: "How much does a hoarding or billboard cost in India? We break down OOH advertising rates city-wise — Lucknow, Kanpur, Delhi and beyond — and explain every factor that affects your outdoor advertising budget.",

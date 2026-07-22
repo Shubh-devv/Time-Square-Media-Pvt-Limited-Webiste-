@@ -4,9 +4,19 @@ import Services from "@/components/Services";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Services — OOH, DOOH, Digital Marketing & Web Solutions",
   description:
-    "Brand building, mobile media, digital marketing, on/in media, BTL activations and retail consultancy — all delivered end-to-end, in-house.",
+    "OOH & Digital OOH (DOOH) advertising, mobile media, digital marketing, on/in media, BTL activations, retail consultancy and web solutions — all delivered end-to-end, in-house, across India.",
+  keywords: [
+    "OOH advertising services",
+    "digital OOH DOOH advertising",
+    "digital marketing agency India",
+    "web solutions company India",
+    "BTL activation agency",
+    "billboard advertising agency",
+    "mobile media advertising",
+  ],
+  alternates: { canonical: "/services" },
 };
 
 export default function ServicesPage() {

@@ -10,10 +10,13 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GlobalUI from "@/components/GlobalUI";
 
+const SITE_URL = "https://timesquaremedia.in";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     template: "%s — Time Square Media",
-    default: "Time Square Media — OOH + Digital + Web Marketing Agency",
+    default: "Time Square Media — OOH, DOOH + Digital Marketing Agency India",
   },
   icons: {
     icon: "/times_favicon.png",
@@ -21,19 +24,70 @@ export const metadata: Metadata = {
     apple: "/times_favicon.png",
   },
   description:
-    "Time Square Media is a full-spectrum advertising agency: out-of-home billboards, digital marketing, web solutions, BTL activations and retail consultancy across six Indian cities.",
+    "Time Square Media is a full-spectrum advertising agency: OOH billboards, Digital OOH (DOOH), digital marketing, web solutions, BTL activations and retail consultancy across six Indian cities — Delhi, Lucknow, Kanpur, Bhopal, Agra and Prayagraj.",
   keywords: [
     "OOH advertising India",
-    "out of home advertising",
-    "billboard advertising",
-    "hoarding advertising",
-    "digital marketing agency Lucknow",
+    "out of home advertising agency",
+    "digital OOH advertising",
+    "DOOH advertising India",
+    "billboard advertising cost India",
+    "hoarding advertising agency",
+    "OOH vs digital marketing",
     "outdoor advertising agency India",
-    "web solutions India",
-    "BTL activations",
+    "digital marketing agency Lucknow",
+    "digital marketing agency India",
+    "web solutions company India",
+    "website design and development India",
+    "BTL activations agency India",
+    "full service advertising agency India",
+    "advertising agency near me",
     "Lucknow",
     "Kanpur",
     "Delhi",
+    "Bhopal",
+    "Agra",
+    "Prayagraj",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "Time Square Media",
+    title: "Time Square Media — OOH, DOOH + Digital Marketing Agency India",
+    description:
+      "Full-spectrum advertising agency: OOH, Digital OOH, digital marketing, web solutions, BTL and retail consultancy across six Indian cities.",
+  },
+};
+
+const ORG_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "AdvertisingAgency",
+  name: "Time Square Media",
+  legalName: "TimesSquare Media Services Pvt. Ltd.",
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.png`,
+  description:
+    "Full-spectrum advertising agency delivering OOH, Digital OOH (DOOH), digital marketing, BTL activations, on/in media, retail consultancy and web solutions across India.",
+  telephone: "+91-95060-17729",
+  email: "info@timesquaremedia.in",
+  areaServed: ["Delhi", "Lucknow", "Kanpur", "Bhopal", "Agra", "Prayagraj", "India"],
+  sameAs: [
+    "https://www.instagram.com/timesquare_media/",
+    "https://www.facebook.com/TimeSquareServices",
+    "https://www.linkedin.com/company/timesquare-media/",
+    "https://twitter.com/timesquarmedia",
+    "https://in.pinterest.com/timesquaremedia/",
+  ],
+  makesOffer: [
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "OOH / Billboard Advertising" } },
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Digital OOH (DOOH) Advertising" } },
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Digital Marketing" } },
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Mobile Media Advertising" } },
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "BTL Activations" } },
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Retail Consultancy" } },
+    { "@type": "Offer", itemOffered: { "@type": "Service", name: "Web Solutions" } },
   ],
 };
 
@@ -45,6 +99,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_SCHEMA) }}
+        />
         <Navbar />
         {children}
         <Footer />

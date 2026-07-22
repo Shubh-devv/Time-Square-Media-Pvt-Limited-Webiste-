@@ -17,11 +17,13 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
       publishedTime: post.date,
+      url: `https://timesquaremedia.in/blog/${post.slug}`,
     },
   };
 }
@@ -34,8 +36,31 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
     (p) => p.slug !== post.slug && (p.category === post.category || BLOG_POSTS.indexOf(p) < 3)
   ).slice(0, 3);
 
+  const ARTICLE_SCHEMA = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { "@type": "Organization", name: "Time Square Media" },
+    publisher: {
+      "@type": "Organization",
+      name: "Time Square Media",
+      logo: { "@type": "ImageObject", url: "https://timesquaremedia.in/logo.png" },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://timesquaremedia.in/blog/${post.slug}`,
+    },
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ARTICLE_SCHEMA) }}
+      />
       {/* Article hero */}
       <section className="relative overflow-hidden border-b border-ink-line pb-14 pt-36 md:pt-48">
         <div

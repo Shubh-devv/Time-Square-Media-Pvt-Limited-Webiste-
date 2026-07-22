@@ -62,6 +62,15 @@ export default function Footer() {
               ))}
               <li>
                 <Link
+                  href="/faq"
+                  className="text-sm font-medium transition-colors hover:text-blue"
+                  style={{ color: "#1a2e45" }}
+                >
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/contact"
                   className="text-sm font-medium transition-colors hover:text-blue"
                   style={{ color: "#1a2e45" }}

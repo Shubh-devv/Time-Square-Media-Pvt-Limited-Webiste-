@@ -6,7 +6,8 @@ import Impact from "@/components/Impact";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Over a decade of OOH and digital advertising excellence across India. Meet Time Square Media — one roof, every medium.",
+    "17+ years of OOH, Digital OOH and digital advertising excellence across India. Meet Time Square Media — one roof, every medium.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

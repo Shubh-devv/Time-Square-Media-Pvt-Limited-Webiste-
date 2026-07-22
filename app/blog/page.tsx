@@ -4,9 +4,17 @@ import PageHero from "@/components/PageHero";
 import { BLOG_POSTS } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Blog — OOH, DOOH & Digital Marketing Guides",
   description:
-    "OOH advertising guides, outdoor marketing strategy and digital insights from Time Square Media — helping Indian brands get seen on every street and every screen.",
+    "OOH advertising guides, Digital OOH (DOOH) strategy, billboard cost breakdowns and digital marketing insights from Time Square Media — helping Indian brands get seen on every street, every screen and every AI search.",
+  keywords: [
+    "OOH advertising guide",
+    "DOOH advertising India",
+    "OOH vs digital marketing",
+    "billboard advertising cost",
+    "outdoor advertising blog",
+  ],
+  alternates: { canonical: "/blog" },
 };
 
 const CAT_STYLE: Record<string, { bg: string; color: string }> = {
@@ -87,8 +95,18 @@ export default function BlogPage() {
             })}
           </div>
 
+          {/* FAQ pointer */}
+          <div className="mt-16 flex flex-col items-center gap-2 text-center">
+            <p className="text-sm text-slate">
+              Looking for quick answers instead?{" "}
+              <Link href="/faq" className="text-blue underline underline-offset-4 hover:text-blue-light">
+                Read our OOH &amp; digital marketing FAQ →
+              </Link>
+            </p>
+          </div>
+
           {/* CTA */}
-          <div className="mt-20 rounded-2xl border border-ink-line bg-ink-soft p-8 text-center md:p-12">
+          <div className="mt-10 rounded-2xl border border-ink-line bg-ink-soft p-8 text-center md:p-12">
             <p className="eyebrow mb-4 justify-center">Start your campaign</p>
             <h3 className="display mx-auto max-w-2xl text-[clamp(2rem,5vw,4rem)]">
               Ready to put your brand<br />
