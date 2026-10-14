@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        disallow: ["/admin", "/api"],
       },
       // AI crawlers — explicitly allowed so the site can be read, quoted and
       // cited by ChatGPT, Gemini, Perplexity, Claude and Google AI Overviews.

@@ -22,6 +22,38 @@ const TESTIMONIALS = [
     role: "Director",
     company: "Tea Valley",
   },
+  // TODO: replace placeholder quote/name/role below with the real testimonial from RUPA.
+  {
+    quote:
+      "Working with Time Square Media gave our brand strong, consistent visibility exactly where our customers were. A dependable partner for outdoor advertising.",
+    name: "Client Name",
+    role: "Marketing Head",
+    company: "RUPA",
+  },
+  // TODO: replace placeholder quote/name/role below with the real testimonial from RSPL.
+  {
+    quote:
+      "Their planning and execution across multiple markets helped us scale our outdoor presence quickly without compromising on quality.",
+    name: "Client Name",
+    role: "Brand Manager",
+    company: "RSPL",
+  },
+  // TODO: replace placeholder quote/name/role below with the real testimonial from Dollar.
+  {
+    quote:
+      "From site selection to final installation, the team handled everything professionally and delivered real impact for our campaigns.",
+    name: "Client Name",
+    role: "Marketing Head",
+    company: "Dollar",
+  },
+  // TODO: replace placeholder quote/name/role below with the real testimonial from Ganpati Sariya.
+  {
+    quote:
+      "A reliable partner that understands local markets well — our brand visibility improved significantly after working with Time Square Media.",
+    name: "Client Name",
+    role: "Director",
+    company: "Ganpati Sariya",
+  },
 ];
 
 export default function Testimonials() {
