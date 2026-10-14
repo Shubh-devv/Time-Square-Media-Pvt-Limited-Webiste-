@@ -30,9 +30,6 @@ const CLIENTS = [
   { name: "Regency",         init: "R",  accent: "#1A4FA0", logo: "/clients/Regency.jpg"      },
   { name: "Saburi Plywood",  init: "SP", accent: "#6D4C41", logo: "/clients/Saburi Plywood.png" },
   { name: "Sharda Education Trust", init: "SE", accent: "#2D78C8", logo: "/clients/Sharda Education Trust.jpg" },
-  // Drop logo files into public/clients and set e.g. logo: "/clients/XYZ.jpg" to replace these initials.
-  { name: "Dollar",          init: "D",  accent: "#1A4FA0" },
-  { name: "Ganpati Sariya",  init: "GS", accent: "#E8511A" },
 ];
 
 const STATS = [
