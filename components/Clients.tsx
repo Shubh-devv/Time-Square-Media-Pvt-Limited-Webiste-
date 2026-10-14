@@ -23,9 +23,14 @@ const CLIENTS = [
   { name: "Kashi",           init: "K",  accent: "#FF6B35", logo: "/clients/Kashi.png"       },
   { name: "PNG",             init: "P",  accent: "#DAA520", logo: "/clients/PNG.jpg"         },
   { name: "ACC",             init: "A",  accent: "#546E7A", logo: "/clients/ACC.png"          },
-  // Drop logo files into public/clients and set e.g. logo: "/clients/RUPA.jpg" to replace these initials.
-  { name: "RUPA",            init: "RU", accent: "#C0392B" },
-  { name: "RSPL",            init: "RSPL", accent: "#2E8B57" },
+  { name: "Rupa",            init: "RU", accent: "#C0392B", logo: "/clients/Rupa.png"        },
+  { name: "RSPL",            init: "RSPL", accent: "#2E8B57", logo: "/clients/RSPL.jpg"      },
+  { name: "Titan",           init: "T",  accent: "#8E6F3E", logo: "/clients/Titan.jpg"        },
+  { name: "V-Mart",          init: "VM", accent: "#D4145A", logo: "/clients/V-Mart.jpg"       },
+  { name: "Regency",         init: "R",  accent: "#1A4FA0", logo: "/clients/Regency.jpg"      },
+  { name: "Saburi Plywood",  init: "SP", accent: "#6D4C41", logo: "/clients/Saburi Plywood.png" },
+  { name: "Sharda Education Trust", init: "SE", accent: "#2D78C8", logo: "/clients/Sharda Education Trust.jpg" },
+  // Drop logo files into public/clients and set e.g. logo: "/clients/XYZ.jpg" to replace these initials.
   { name: "Dollar",          init: "D",  accent: "#1A4FA0" },
   { name: "Ganpati Sariya",  init: "GS", accent: "#E8511A" },
 ];
