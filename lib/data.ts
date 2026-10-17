@@ -180,7 +180,7 @@ export const SERVICES: Service[] = [
 export const CITIES = [
   {
     city: "Delhi",
-    address: "A-39, CR Park, New Delhi — 110019",
+    address: "A-10, CR Park, New Delhi — 110019",
     contact: "Akshay Sinha",
     phone: "+91 98387 98388",
   },

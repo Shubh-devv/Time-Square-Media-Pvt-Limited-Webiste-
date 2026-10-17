@@ -386,7 +386,7 @@ export const CITY_PAGES: CityPage[] = [
     office: {
       person: "Akshay Sinha",
       phone: "+91 98387 98388",
-      address: "A-39, CR Park, New Delhi — 110019",
+      address: "A-10, CR Park, New Delhi — 110019",
     },
   },
 
