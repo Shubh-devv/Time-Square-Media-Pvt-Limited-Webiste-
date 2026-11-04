@@ -403,7 +403,7 @@ export const CITY_PAGES: CityPage[] = [
     keyMarkets: 8,
     totalSites: 70,
     overview:
-      "Bhopal, the capital of Madhya Pradesh and the 'City of Lakes', is Central India's most important advertising market. A rapidly modernising city with a strong government, education and IT presence, Bhopal is seeing explosive commercial growth along the Hoshangabad Road and DB City Mall corridor. Our Arera Colony team covers the entire city with a strong network of hoardings, mobile media and ambient formats.",
+      "Bhopal, the capital of Madhya Pradesh and the 'City of Lakes', is Central India's most important advertising market. A rapidly modernising city with a strong government, education and IT presence, Bhopal is seeing explosive commercial growth along the Hoshangabad Road and DB City Mall corridor. Our M.P. Nagar team covers the entire city with a strong network of hoardings, mobile media and ambient formats.",
     whyHere: [
       "State capital — highest concentration of MP government, CPSE offices and institutional buyers",
       "DB City Mall (Hoshangabad Road) is Central India's premium retail destination with massive daily footfall",
@@ -488,7 +488,7 @@ export const CITY_PAGES: CityPage[] = [
     office: {
       person: "Syed Iqbal",
       phone: "+91 81759 88988",
-      address: "8/1 Nupur Kunj E3, Arera Colony, Hoshangabad Road, Bhopal — 462016",
+      address: "301A, 4th Floor, Sage Plaza, Near Rajhans Hotel, M.P. Nagar, Zone-II, Bhopal — 462011",
     },
   },
 

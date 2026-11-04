@@ -198,7 +198,7 @@ export const CITIES = [
   },
   {
     city: "Bhopal",
-    address: "8/1 Nupur Kunj E3, Arera Colony, Hoshangabad Road, Bhopal",
+    address: "301A, 4th Floor, Sage Plaza, Near Rajhans Hotel, M.P. Nagar, Zone-II, Bhopal",
     contact: "Syed Iqbal",
     phone: "+91 81759 88988",
   },
