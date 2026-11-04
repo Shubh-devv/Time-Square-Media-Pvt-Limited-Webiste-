@@ -9,6 +9,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GlobalUI from "@/components/GlobalUI";
+import DiwaliIntro from "@/components/DiwaliIntro";
 
 const SITE_URL = "https://timesquaremedia.in";
 
@@ -110,6 +111,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <GlobalUI />
+        <DiwaliIntro />
       </body>
     </html>
   );
