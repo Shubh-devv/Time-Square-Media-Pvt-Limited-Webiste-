@@ -229,29 +229,19 @@ export default function DiwaliIntro() {
   );
 }
 
-// Stays on the page after the intro: candles under the header, diyas along the bottom
+// Stays on the page after the intro: lanterns hanging from the header, diyas along the bottom
 function DiwaliDecor() {
   return (
     <div aria-hidden className="pointer-events-none">
-      {/* Candles just below the header, left + right */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="fixed left-3 top-[96px] z-30 flex items-end gap-2 md:left-6"
-      >
-        <Candle height={34} delay={0} />
-        <Candle height={24} delay={0.3} />
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="fixed right-3 top-[96px] z-30 flex items-end gap-2 md:right-6"
-      >
-        <Candle height={24} delay={0.15} />
-        <Candle height={34} delay={0.45} />
-      </motion.div>
+      {/* Hanging lanterns — strings start at the top and run behind the header chips */}
+      <div className="fixed left-1 top-0 z-30 flex gap-3 md:left-4 md:gap-6">
+        <Lantern string={96} size={34} delay={0} />
+        <Lantern string={130} size={28} delay={0.8} />
+      </div>
+      <div className="fixed right-1 top-0 z-30 flex gap-3 md:right-4 md:gap-6">
+        <Lantern string={130} size={28} delay={0.4} />
+        <Lantern string={96} size={34} delay={1.2} />
+      </div>
 
       {/* Row of diyas along the bottom, centred so it clears the WhatsApp / chat buttons */}
       <div className="fixed bottom-2 left-0 right-0 z-30 flex justify-center">
@@ -332,39 +322,88 @@ function Diya({ size, delay }: { size: number; delay: number }) {
   );
 }
 
-function Candle({ height, delay }: { height: number; delay: number }) {
-  const width = 12;
+// Akash kandil — gold-trimmed hanging lantern that sways gently from its string
+function Lantern({ string, size, delay }: { string: number; size: number; delay: number }) {
+  const h = size * 2.1;
+  const id = `lantern-${size}-${string}`;
   return (
-    <div className="relative" style={{ width, height: height + 4 }}>
-      {/* glow */}
+    <motion.div
+      initial={{ opacity: 0, y: -40 }}
+      animate={{ opacity: 1, y: 0, rotate: [-4, 4, -4] }}
+      transition={{
+        opacity: { duration: 0.6, delay: delay * 0.3 },
+        y: { duration: 0.9, delay: delay * 0.3, ease: "easeOut" },
+        rotate: { duration: 3.6, delay, repeat: Infinity, ease: "easeInOut" },
+      }}
+      className="flex flex-col items-center"
+      style={{ transformOrigin: "50% 0%", width: size }}
+    >
+      {/* string */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 rounded-full"
-        style={{
-          width: 44,
-          height: 44,
-          top: -36,
-          background: "radial-gradient(circle, rgba(255,176,46,0.5) 0%, rgba(255,122,24,0) 70%)",
-        }}
+        className="w-px"
+        style={{ height: string, background: "linear-gradient(180deg, rgba(242,193,78,0.2) 0%, #F2C14E 100%)" }}
       />
-      {/* wick + flame */}
-      <div className="absolute left-0 w-full" style={{ top: 0 }}>
-        <div className="absolute left-1/2 h-1 w-px -translate-x-1/2 bg-[#2a1a10]" style={{ top: -3 }} />
-        <Flame width={7} height={14} delay={delay} />
-      </div>
-      {/* wax */}
-      <div
-        className="absolute left-0 top-0 w-full rounded-t-sm"
-        style={{
-          height,
-          background: "linear-gradient(90deg, #E8D8B8 0%, #FFF6E4 45%, #D9C29A 100%)",
-          boxShadow: "inset 0 3px 0 rgba(255,214,140,0.9)",
-        }}
-      />
-      {/* brass holder */}
-      <div
-        className="absolute -left-1 bottom-0 h-1.5 rounded-full"
-        style={{ width: width + 8, background: "linear-gradient(180deg, #F2C14E 0%, #A87A1E 100%)" }}
-      />
-    </div>
+      <svg
+        width={size}
+        height={h}
+        viewBox="0 0 40 84"
+        style={{ filter: "drop-shadow(0 0 10px rgba(255,140,40,0.75)) drop-shadow(0 0 22px rgba(255,90,40,0.35))" }}
+      >
+        <defs>
+          <linearGradient id={`${id}-body`} x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#B3201A" />
+            <stop offset="50%" stopColor="#FF5A2A" />
+            <stop offset="100%" stopColor="#B3201A" />
+          </linearGradient>
+          <radialGradient id={`${id}-glow`} cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#FFF4C2" />
+            <stop offset="45%" stopColor="#FFC24A" />
+            <stop offset="100%" stopColor="#FF7A18" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id={`${id}-gold`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#FFE08A" />
+            <stop offset="100%" stopColor="#B8862A" />
+          </linearGradient>
+        </defs>
+
+        {/* top cap + ring */}
+        <circle cx="20" cy="2.5" r="2" fill="none" stroke={`url(#${id}-gold)`} strokeWidth="1.2" />
+        <path d="M14 6 H26 L28 10 H12 Z" fill={`url(#${id}-gold)`} />
+
+        {/* body */}
+        <path d="M12 10 H28 L38 26 L38 40 L28 56 H12 L2 40 L2 26 Z" fill={`url(#${id}-body)`} />
+        <ellipse cx="20" cy="33" rx="12" ry="16" fill={`url(#${id}-glow)`} opacity="0.95">
+          <animate attributeName="opacity" values="0.95;0.7;0.95" dur="1.4s" repeatCount="indefinite" />
+        </ellipse>
+
+        {/* gold frame */}
+        <path
+          d="M12 10 H28 L38 26 L38 40 L28 56 H12 L2 40 L2 26 Z M2 26 H38 M2 40 H38 M12 10 L20 26 L28 10 M12 56 L20 40 L28 56"
+          fill="none"
+          stroke={`url(#${id}-gold)`}
+          strokeWidth="1.2"
+          strokeLinejoin="round"
+        />
+        <circle cx="20" cy="33" r="2.2" fill="#FFE08A" />
+
+        {/* bottom cap */}
+        <path d="M12 56 H28 L25 61 H15 Z" fill={`url(#${id}-gold)`} />
+
+        {/* tassels */}
+        {[-8, -4, 0, 4, 8].map((dx, i) => (
+          <g key={dx}>
+            <line
+              x1={20 + dx * 0.4}
+              y1="61"
+              x2={20 + dx}
+              y2={i === 2 ? 82 : 76}
+              stroke={`url(#${id}-gold)`}
+              strokeWidth="0.9"
+            />
+            <circle cx={20 + dx} cy={i === 2 ? 82 : 76} r="1.2" fill="#FFD166" />
+          </g>
+        ))}
+      </svg>
+    </motion.div>
   );
 }
