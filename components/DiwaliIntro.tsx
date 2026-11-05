@@ -18,9 +18,12 @@ export default function DiwaliIntro() {
   const [visible, setVisible] = useState(false);
   const [showDiyas, setShowDiyas] = useState(false);
   const [done, setDone] = useState(false);
+  const [diyaSize, setDiyaSize] = useState(68);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // Fit 5 diyas (middle one scaled up) inside narrow phones
+    setDiyaSize(Math.round(Math.min(68, Math.max(38, (window.innerWidth - 80) / 7))));
     setVisible(true);
     const t1 = setTimeout(() => setShowDiyas(true), DIYA_AT);
     const t2 = setTimeout(() => setVisible(false), FADE_AT);
@@ -73,8 +76,11 @@ export default function DiwaliIntro() {
       });
     };
 
+    // Lighter show on phones so low-end devices stay smooth
+    const small = window.innerWidth < 640;
+
     const burst = (x: number, y: number, color: string) => {
-      const count = 70 + Math.floor(Math.random() * 40);
+      const count = small ? 45 + Math.floor(Math.random() * 25) : 70 + Math.floor(Math.random() * 40);
       for (let i = 0; i < count; i++) {
         const angle = (Math.PI * 2 * i) / count;
         const speed = 2 + Math.random() * 4.5;
@@ -95,7 +101,7 @@ export default function DiwaliIntro() {
 
     const frame = (now: number) => {
       const elapsed = now - start;
-      if (elapsed < 3400 && now - lastLaunch > 260) {
+      if (elapsed < 3400 && now - lastLaunch > (small ? 340 : 260)) {
         launch();
         if (Math.random() < 0.4) launch();
         lastLaunch = now;
@@ -179,7 +185,8 @@ export default function DiwaliIntro() {
 
             <button
               onClick={() => setVisible(false)}
-              className="absolute right-4 top-4 z-10 rounded-full border border-white/25 px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-white/70 transition hover:border-white/60 hover:text-white"
+              style={{ top: "max(1rem, env(safe-area-inset-top))" }}
+              className="absolute right-4 z-10 rounded-full border border-white/25 px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-white/70 transition hover:border-white/60 hover:text-white"
             >
               Skip
             </button>
@@ -190,10 +197,10 @@ export default function DiwaliIntro() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.9, ease: "easeOut" }}
-                  className="relative z-10 mb-[12vh] flex flex-col items-center px-4 text-center"
+                  className="relative z-10 mb-[12vh] flex w-full flex-col items-center px-4 text-center"
                 >
                   <h2
-                    className="font-display text-5xl uppercase tracking-wide sm:text-7xl"
+                    className="font-display text-[2.6rem] uppercase leading-none tracking-wide sm:text-6xl md:text-7xl"
                     style={{
                       color: "#FFD166",
                       textShadow: "0 0 18px rgba(255,176,46,0.8), 0 0 42px rgba(255,122,24,0.5)",
@@ -201,11 +208,11 @@ export default function DiwaliIntro() {
                   >
                     Happy Diwali
                   </h2>
-                  <p className="mt-3 font-mono text-xs uppercase tracking-[0.3em] text-white/70 sm:text-sm">
+                  <p className="mt-3 max-w-[22rem] font-mono text-[0.62rem] uppercase leading-relaxed tracking-[0.2em] text-white/70 sm:max-w-none sm:text-sm sm:tracking-[0.3em]">
                     Time Square Media wishes you light &amp; prosperity
                   </p>
 
-                  <div className="mt-10 flex items-end gap-5 sm:gap-10">
+                  <div className="mt-8 flex items-end gap-3 sm:mt-10 sm:gap-8">
                     {[0, 1, 2, 3, 4].map((i) => (
                       <motion.div
                         key={i}
@@ -213,7 +220,7 @@ export default function DiwaliIntro() {
                         animate={{ opacity: 1, scale: i === 2 ? 1.25 : 1 }}
                         transition={{ delay: 0.15 * i, duration: 0.5 }}
                       >
-                        <Diya size={68} delay={i * 0.17} />
+                        <Diya size={diyaSize} delay={i * 0.17} />
                       </motion.div>
                     ))}
                   </div>
@@ -233,18 +240,37 @@ export default function DiwaliIntro() {
 function DiwaliDecor() {
   return (
     <div aria-hidden className="pointer-events-none">
-      {/* Hanging lanterns — strings start at the top and run behind the header chips */}
-      <div className="fixed left-1 top-0 z-30 flex gap-3 md:left-4 md:gap-6">
-        <Lantern string={96} size={34} delay={0} />
-        <Lantern string={130} size={28} delay={0.8} />
+      {/* Hanging lanterns — strings start at the top and run behind the header chips.
+          Sized to the page's side gutter at each breakpoint so they never cover content. */}
+      {/* phones: gutter 24px */}
+      <div className="fixed left-[3px] top-0 z-30 md:hidden">
+        <Lantern string={88} size={18} delay={0} />
       </div>
-      <div className="fixed right-1 top-0 z-30 flex gap-3 md:right-4 md:gap-6">
-        <Lantern string={130} size={28} delay={0.4} />
+      <div className="fixed right-[3px] top-0 z-30 md:hidden">
+        <Lantern string={88} size={18} delay={0.6} />
+      </div>
+      {/* tablets + laptops: gutter 40px */}
+      <div className="fixed left-[6px] top-0 z-30 hidden md:block min-[1440px]:hidden">
+        <Lantern string={92} size={28} delay={0} />
+      </div>
+      <div className="fixed right-[6px] top-0 z-30 hidden md:block min-[1440px]:hidden">
+        <Lantern string={92} size={28} delay={0.6} />
+      </div>
+      {/* wide screens: content is centred, plenty of side room for a pair each side */}
+      <div className="fixed left-4 top-0 z-30 hidden gap-6 min-[1440px]:flex">
+        <Lantern string={96} size={34} delay={0} />
+        <Lantern string={132} size={28} delay={0.8} />
+      </div>
+      <div className="fixed right-4 top-0 z-30 hidden gap-6 min-[1440px]:flex">
+        <Lantern string={132} size={28} delay={0.4} />
         <Lantern string={96} size={34} delay={1.2} />
       </div>
 
       {/* Row of diyas along the bottom, centred so it clears the WhatsApp / chat buttons */}
-      <div className="fixed bottom-2 left-0 right-0 z-30 flex justify-center">
+      <div
+        className="fixed left-0 right-0 z-30 flex justify-center"
+        style={{ bottom: "max(0.5rem, env(safe-area-inset-bottom))" }}
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
